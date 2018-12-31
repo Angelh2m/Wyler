@@ -6,23 +6,8 @@
 
 // You can delete this file if you're not using it
 
-// exports.onCreatePage = async ({ page, actions }) => {
-//     const { createPage } = actions
-
-//     // page.matchPath is a special key that's used for matching pages
-//     // only on the client.
-//     if (page.path.match(/^\/app/)) {
-//         page.matchPath = `/app/*`
-
-//         // Update the page.
-//         createPage(page)
-//     }
-// }
-
-
 
 // data layer is bootstrapped to let plugins create pages from data.
-
 const path = require('path');
 
 exports.createPages = ({ graphql, actions }) => {
@@ -65,4 +50,14 @@ exports.createPages = ({ graphql, actions }) => {
             })
         )
     })
+}
+
+exports.onCreatePage = ({ page, actions }) => {
+    const { createPage } = actions
+    // Make the front page match everything client side.
+    // Normally your paths should be a bit more judicious.
+    if (page.path === `/`) {
+        page.matchPath = `/*`
+        createPage(page)
+    }
 }

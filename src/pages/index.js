@@ -1,21 +1,39 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import React from "react"
+import { Router, Link, Location } from "@reach/router"
 
-import Layout from '../components/layout'
-import Image from '../components/image'
-import SEO from '../components/seo'
+const App = () => (
+  <div className="app">
+    <nav className="nav">
+      <Link to="/">Page 1</Link>
+      <Link to="/page22">Page 22</Link>
+      <Link to="page/2">Page 2</Link>
+      <Link to="page/3">Page 3</Link>
+      <Link to="page/4">Page 4</Link>
+    </nav>
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
+    <FadeTransitionRouter>
+
+    </FadeTransitionRouter>
+  </div>
 )
 
-export default IndexPage
+const FadeTransitionRouter = props => (
+  <Location>
+    {({ location }) => (
+      <div>
+        <Router location={location} className="router">
+          <Page path="/" page="1" />
+          <Page path="page/:page" />
+        </Router>
+      </div>
+    )}
+  </Location>
+)
+
+const Page = props => (
+  <div>
+    {props.page}
+  </div>
+)
+
+export default App
