@@ -1,5 +1,10 @@
 import React from "react"
 import { Router, Link, Location } from "@reach/router"
+import '../sass/index.scss'
+
+import Layout from '../components/layout'
+import Image from '../components/image'
+import SEO from '../components/seo'
 
 const App = () => (
   <div className="app">
@@ -21,7 +26,7 @@ const FadeTransitionRouter = props => (
   <Location>
     {({ location }) => (
       <div>
-        <Router location={location} className="router">
+        <Router location={location} className="sass-nav-example ">
           <Page path="/" page="1" />
           <Page path="page/:page" />
         </Router>
@@ -32,7 +37,19 @@ const FadeTransitionRouter = props => (
 
 const Page = props => (
   <div>
-    {props.page}
+    <Layout>
+      <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+      <h1>Hi people</h1>
+      <p>Welcome to your new Gatsby site.</p>
+      <p>Now go build something great.</p>
+
+      {props.page}
+
+      <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+        <Image />
+      </div>
+      <Link to="/page-2/">Go to page 2</Link>
+    </Layout>
   </div>
 )
 

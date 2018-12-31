@@ -26,14 +26,11 @@ exports.createPages = ({ graphql, actions }) => {
                         title
                       }
                     }
-                  }
+                }
             }
           `
             ).then(result => {
-                if (result.errors) {
-                    reject(result.errors)
-                }
-                console.log(result);
+                if (result.errors) { reject(result.errors) }
                 // Create pages for each markdown file.
                 result.data.allArticlesJson.edges.forEach(({ node }) => {
                     const path = node.title
