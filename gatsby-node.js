@@ -9,8 +9,10 @@
 
 // data layer is bootstrapped to let plugins create pages from data.
 const path = require('path');
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
 
-exports.createPages = ({ graphql, actions }) => {
+exports.createPages = async ({ graphql, actions }) => {
     const { createPage } = actions
 
     return new Promise((resolve, reject) => {
@@ -46,6 +48,29 @@ exports.createPages = ({ graphql, actions }) => {
                 })
             })
         )
+    })
+}
+
+exports.createPages = async ({ actions, graphql }) => {
+    const { data } = await graphql(`
+      query {
+        swapi {
+          allSpecies {
+            id
+            name
+          }
+        }
+      }
+    `)
+
+    data.swapi.allSpecies.forEach(({ id, name }) => {
+        actions.createPage({
+            path: name,
+            component: path.resolve(`src/templates/posts.js`),
+            context: {
+                speciesId: id,
+            },
+        })
     })
 }
 
