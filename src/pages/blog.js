@@ -28,6 +28,9 @@ export default class blog extends Component {
 
     render() {
         console.warn(this.state.data.name);
+        console.warn(this.props);
+        console.warn(this.props.data);
+
         return (
             <div>
                 <BlogPost />
@@ -41,3 +44,24 @@ export default class blog extends Component {
     }
 }
 
+
+export const postQuery = graphql`
+
+    query postQuery {
+        allInternalPosts{
+            edges{
+                node{
+                title
+                author
+                }
+            } 
+        }
+        allMarkdownRemark{
+            edges {
+               node {
+                 html
+               }
+           }
+         }
+    }
+`

@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import { StaticQuery, graphql } from 'gatsby'
+
 
 export default class Posts extends Component {
     render() {
-        console.log(this.props.data);
+
 
         return (
             <div>
@@ -12,10 +14,3 @@ export default class Posts extends Component {
     }
 }
 
-// export const articleQuery = graphql`
-
-//     query articles {
-
-//     }
-
-// `

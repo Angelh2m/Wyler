@@ -53,25 +53,49 @@ exports.createPages = async ({ graphql, actions }) => {
 
 exports.createPages = async ({ actions, graphql }) => {
     const { data } = await graphql(`
-      query {
-        swapi {
-          allSpecies {
-            id
-            name
-          }
+    query postQuery {
+        allInternalPosts{
+            edges{
+                node{
+                    title
+                    author
+                    id
+                    slug
+                }
+            } 
         }
-      }
+    }
     `)
 
-    data.swapi.allSpecies.forEach(({ id, name }) => {
-        actions.createPage({
-            path: name,
-            component: path.resolve(`src/templates/posts.js`),
-            context: {
-                speciesId: id,
-            },
-        })
+    console.log(data.allInternalPosts.edges);
+    data.allInternalPosts.edges.forEach(({ node }) => {
+        console.log("nodenodenodenodenode", node.slug);
+        if (node.slug) {
+            actions.createPage({
+                path: node.slug,
+                component: path.resolve(`src/templates/posts.js`),
+                context: {
+                    title: node.slug,
+                },
+            })
+        }
     })
+}
+
+const { createFilePath } = require(`gatsby-source-filesystem`)
+
+exports.onCreateNode = ({ node, actions, getNode }) => {
+    const { createNodeField } = actions
+
+    if (node.internal.type === `MarkdownRemark`) {
+        const value = createFilePath({ node, getNode })
+        createNodeField({
+            name: `slug`,
+            component: path.resolve(`src/templates/posts.js`),
+            node,
+            value,
+        })
+    }
 }
 
 exports.onCreatePage = ({ page, actions }) => {
