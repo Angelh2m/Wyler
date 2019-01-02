@@ -12,37 +12,6 @@ const path = require('path');
 // require('es6-promise').polyfill();
 // require('isomorphic-fetch');
 
-/* *
-*  BLOGPOST - Create single post pages URL's
-*/
-// exports.createPages = async ({ actions, graphql }) => {
-//     const { data } = await graphql(`
-//         {
-//             allMarkdownRemark{
-//                 edges {
-//                     node { 
-//                         frontmatter{title category}
-//                         html
-//                     }
-//                 }
-//             }
-//         }
-//     `);
-
-//     data.allMarkdownRemark.edges.forEach(({ node }) => {
-
-//         // console.log("DATA", `${node.frontmatter.category}/${node.frontmatter.title}`);
-//         actions.createPage({
-//             path: `${node.frontmatter.category}/${node.frontmatter.title}`,
-//             component: path.resolve(`src/templates/BlogPost.js`),
-//             context: {
-//                 ...node
-//             },
-//         })
-//     })
-// }
-
-
 exports.createPages = async ({ graphql, actions }) => {
 
 
@@ -55,7 +24,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 allMarkdownRemark{
                     edges {
                         node { 
-                            frontmatter{title category}
+                            frontmatter{category slug}
                             html
                         }
                     }
@@ -67,30 +36,29 @@ exports.createPages = async ({ graphql, actions }) => {
                 // Create pages for each markdown file.
                 result.data.allMarkdownRemark.edges.forEach(({ node }) => {
 
-                    // console.log("DATA", `${node.frontmatter.category}/${node.frontmatter.title}`);
+                    console.log("DATA", `${node.frontmatter.category}/${node.frontmatter.slug}`);
                     actions.createPage({
-                        path: `${node.frontmatter.category}/${node.frontmatter.title}`,
+                        path: `${node.frontmatter.category}/${node.frontmatter.slug}`,
                         component: path.resolve(`src/templates/BlogPost.js`),
                         context: {
-                            ...node
+                            slug: node.frontmatter.slug
                         },
                     })
                 })
             }).then(async () => {
 
-                console.log("RUNNNNNNNNNNNNNNNNNNN .................. ");
 
                 const { data } = await graphql(`
                     {
-                            allMarkdownRemark{
-                                edges {
-                                    node { 
-                                        frontmatter{title category}
-                                    }
+                        allMarkdownRemark{
+                            edges {
+                                node { 
+                                    frontmatter{title category}
                                 }
                             }
                         }
-                    `)
+                    }
+                `)
 
                 data.allMarkdownRemark.edges.forEach(({ node }) => {
                     actions.createPage({
@@ -108,82 +76,6 @@ exports.createPages = async ({ graphql, actions }) => {
         )
     })
 }
-
-
-/* *
-*   Grab data from local JSON FILEs
-*/
-
-// exports.createPages = async ({ actions, graphql }) => {
-
-
-// data.allInternalPosts.edges.forEach(({ node }) => {
-//     if (node.slug) {
-//         actions.createPage({
-//             path: node.slug,
-//             component: path.resolve(`src/templates/Category.js`),
-//             context: {
-//                 title: node.slug,
-//             },
-//         })
-//     }
-// })
-// }
-
-/* *
-*  CATEGORY create pages
-*/
-
-// exports.createPages = async ({ actions, graphql }) => {
-//     console.log("RUNNNNNNNNNNNNNNNNNNN .................. ");
-
-//     const { data } = await graphql(`
-//        {
-//             allMarkdownRemark{
-//                 edges {
-//                     node { 
-//                         frontmatter{title category}
-//                     }
-//                 }
-//             }
-//         }
-//     `)
-
-//     data.allMarkdownRemark.edges.forEach(({ node }) => {
-//         actions.createPage({
-//             path: `${node.frontmatter.category}`,
-//             component: path.resolve(`src/templates/Category.js`),
-//             context: {
-//                 title: node.frontmatter.title,
-//             },
-//         })
-
-//     })
-// }
-
-
-
-/* *
-*   Grab data from an external source **
-*/
-
-// const { createFilePath } = require(`gatsby-source-filesystem`)
-
-// exports.onCreateNode = ({ node, actions, getNode }) => {
-//     const { createNodeField } = actions
-
-//     if (node.internal.type === `MarkdownRemark`) {
-
-//         const value = createFilePath({ node, getNode })
-
-//         createNodeField({
-//             name: `slug`,
-//             component: path.resolve(`src/templates/posts.js`),
-//             node,
-//             value,
-//         })
-//     }
-// }
 
 
 /* *

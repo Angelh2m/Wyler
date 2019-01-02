@@ -1,12 +1,13 @@
 import React from 'react'
 import '../sass/index.scss'
 import FrontPage from '../templates/FrontPage'
+import Layout from '../components/layout'
 
 const App = () => (
-  <div>
+  <Layout>
     {/* <Navigation /> */}
     <FrontPage />
-  </div>
+  </Layout>
 )
 
 export default App
