@@ -31,7 +31,7 @@ export default function FrontPage() {
                 <Link
                   to={`${post.node.frontmatter.category}/${
                     post.node.frontmatter.title
-                  }`}
+                    }`}
                 >
                   <h2>{post.node.frontmatter.title}</h2>
                 </Link>

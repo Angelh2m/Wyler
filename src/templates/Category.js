@@ -11,14 +11,9 @@ export default function Category(props) {
             <h3>Categories</h3>
             {posts.map((post, i) => (
                 <div key={i}>
-
-                    <h2>
-                        {post.node.frontmatter.title}
-                    </h2>
+                    <h2> {post.node.frontmatter.title} </h2>
                     {
                         post.node.frontmatter.featuredImage && (
-
-
                             <Img fixed={post.node.frontmatter.featuredImage.childImageSharp.fixed} />
                         )
                     }

@@ -1,17 +1,17 @@
-
 import React from 'react'
+import Layout from '../components/layout';
 
 export default function BlogPost(props) {
     console.warn(props.pageContext);
 
     const post = props.pageContext;
     return (
-        <div>
+        <Layout>
             <div>
                 <h1>{post.frontmatter.title}</h1>
                 <p dangerouslySetInnerHTML={{ __html: post.html }} />
             </div>
-        </div>
+        </Layout>
     )
 }
 
