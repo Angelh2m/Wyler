@@ -1,6 +1,8 @@
 ---
 title: New Beginnings
 date: '2015-05-28T22:40:32.169Z'
+category: travel
+featuredImage: "./PORK.jpeg"
 ---
 
 Far far away, behind the word mountains, far from the countries Vokalia and
