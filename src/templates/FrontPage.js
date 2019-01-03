@@ -3,7 +3,7 @@ import { StaticQuery, graphql } from 'gatsby'
 import { Link } from '@reach/router'
 import Img from 'gatsby-image'
 import SocialMedia from '../components/SocialMedia/SocialMedia'
-import './FrontPage.scss'
+// import './FrontPage.scss'
 
 export default function FrontPage() {
   return (
@@ -30,7 +30,9 @@ export default function FrontPage() {
                     }
 
                   }
+
                   html
+                  excerpt
                 }
               }
             }
@@ -39,7 +41,7 @@ export default function FrontPage() {
         render={data => (
           <>
             {data.allMarkdownRemark.edges.map((post, i) => (
-              <div key={i} className="container--flex">
+              <div key={i} className="container--flex front__spacer">
                 <div className="col-1 posts__social-column">
                   <SocialMedia post={post.node.frontmatter} />
                 </div>
@@ -66,6 +68,11 @@ export default function FrontPage() {
                       />
                     </Link>
                   )}
+                  <div
+                    key={`body`}
+                    id="___gatsby"
+                    dangerouslySetInnerHTML={{ __html: post.node.excerpt }}
+                  />
                 </div>
               </div>
             ))}

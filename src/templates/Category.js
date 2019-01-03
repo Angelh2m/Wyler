@@ -3,47 +3,60 @@ import { Link } from 'gatsby'
 
 import SEO from '../components/seo'
 import Img from 'gatsby-image'
-import Layout from '../components/Layout';
+
+import Sidebar from '../components/Sidebar/Sidebar';
+import Header from '../components/header/Header';
+import Footer from '../components/Footer/Footer';
+
+// import '../sass/Main.scss'
 
 export default function Category(props) {
   const posts = props.data.allMarkdownRemark.edges
   console.warn(posts)
-
+  // try { window.scrollTo(0, 0) } catch (error) { console.log(err)}
   return (
-    <Layout>
+    <div>
+      <Header />
+
+
       <SEO
         title={props.pageContext.id}
         description={'Description'}
         keywords={[`gatsby`, `application`, `react`]}
       />
 
-      <div className="container--flex">
+      <main className="container--flex">
         <div className="container--flex posts">
 
-          <div className="layout__search" />
-          {posts.map((post, i) => (
-            <div key={i}>
-              <Link
-                to={`${post.node.frontmatter.category}/${
-                  post.node.frontmatter.slug
-                  }`}
-              >
-                <h2> {post.node.frontmatter.title} </h2>
-              </Link>
-              {post.node.frontmatter.featuredImage && (
-                <Img
-                  fluid={
-                    post.node.frontmatter.featuredImage.childImageSharp.fluid
-                  }
-                />
-              )}
-              <p>{post.node.excerpt}</p>
-            </div>
-          ))}
+          <div className="layout__search" >
+            {posts.map((post, i) => (
+              <div key={i}>
+                <Link
+                  to={`${post.node.frontmatter.category}/${
+                    post.node.frontmatter.slug
+                    }`}>
+                  <h2> {post.node.frontmatter.title} </h2>
+                </Link>
+                {post.node.frontmatter.featuredImage && (
+                  <Img
+                    fluid={
+                      post.node.frontmatter.featuredImage.childImageSharp.fluid
+                    }
+                  />
+                )}
+                <p>{post.node.excerpt}</p>
+              </div>
+            ))}
+          </div>
+          <aside className="col-2-half">
+            <Sidebar />
+          </aside>
         </div>
+      </main>
 
-      </div>
-    </Layout>
+
+      <Footer />
+    </div>
   )
 }
 
@@ -68,6 +81,7 @@ export const queryCategory = graphql`
             }
 
           }
+
           html
           timeToRead
           excerpt

@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
 
 import Header from './header/Header'
-import './layout.css'
+// import './layout.css'
+import '../sass/Main.scss'
+import Footer from './Footer/Footer';
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -23,10 +25,8 @@ const Layout = ({ children }) => (
 
           {children}
 
-          <footer>
-            © 2018, Built with <a href="https://www.gatsbyjs.org">Gatsby</a>
-          </footer>
         </main>
+        <Footer />
       </>
     )}
   />

@@ -1,9 +1,9 @@
 import React from 'react'
-import '../sass/Main.scss'
 import FrontPage from '../templates/FrontPage'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Sidebar from '../components/Sidebar/Sidebar'
+
 
 const App = () => (
   <Layout>
