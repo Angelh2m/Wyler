@@ -9,8 +9,6 @@
 
 // data layer is bootstrapped to let plugins create pages from data.
 const path = require('path');
-// require('es6-promise').polyfill();
-// require('isomorphic-fetch');
 
 exports.createPages = async ({ graphql, actions }) => {
 
@@ -35,13 +33,11 @@ exports.createPages = async ({ graphql, actions }) => {
                 if (result.errors) { reject(result.errors) }
                 // Create pages for each markdown file.
                 result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-
-                    console.log("DATA", `${node.frontmatter.category}/${node.frontmatter.slug}`);
                     actions.createPage({
                         path: `${node.frontmatter.category}/${node.frontmatter.slug}`,
                         component: path.resolve(`src/templates/BlogPost.js`),
                         context: {
-                            slug: node.frontmatter.slug
+                            id: node.frontmatter.slug
                         },
                     })
                 })

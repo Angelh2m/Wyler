@@ -2,11 +2,12 @@ import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import { Link } from '@reach/router'
 import Img from 'gatsby-image'
+import SocialMedia from '../components/SocialMedia/SocialMedia'
+import './FrontPage.scss'
 
 export default function FrontPage() {
   return (
     <div>
-      <h2>FRONT PAGE</h2>
       <StaticQuery
         query={graphql`
           query getAllposts {
@@ -17,13 +18,17 @@ export default function FrontPage() {
                     title
                     category
                     slug
+                    date
+
                     featuredImage {
                       childImageSharp {
-                        fixed(width: 400) {
-                          ...GatsbyImageSharpFixed
+                        fluid(maxWidth: 800) {
+                          # Choose either the fragment including a small base64ed image, a traced placeholder SVG, or one without.
+                          ...GatsbyImageSharpFluid
                         }
                       }
                     }
+
                   }
                   html
                 }
@@ -33,24 +38,35 @@ export default function FrontPage() {
         `}
         render={data => (
           <>
-            {console.log(data.allMarkdownRemark.edges)}
-
             {data.allMarkdownRemark.edges.map((post, i) => (
-              <div key={i}>
-                <Link
-                  to={`${post.node.frontmatter.category}/${
-                    post.node.frontmatter.slug
-                  }`}
-                >
-                  <h2>{post.node.frontmatter.title}</h2>
-                </Link>
-                {post.node.frontmatter.featuredImage && (
-                  <Img
-                    fixed={
-                      post.node.frontmatter.featuredImage.childImageSharp.fixed
-                    }
-                  />
-                )}
+              <div key={i} className="container--flex">
+                <div className="col-1 posts__social-column">
+                  <SocialMedia post={post.node.frontmatter} />
+                </div>
+
+                <div className="col-7 ">
+                  <Link
+                    to={`${post.node.frontmatter.category}/${
+                      post.node.frontmatter.slug
+                      }`}
+                  >
+                    <h2>{post.node.frontmatter.title}</h2>
+                  </Link>
+                  {post.node.frontmatter.featuredImage && (
+                    <Link
+                      to={`${post.node.frontmatter.category}/${
+                        post.node.frontmatter.slug
+                        }`}
+                    >
+                      <Img
+                        fluid={
+                          post.node.frontmatter.featuredImage.childImageSharp
+                            .fluid
+                        }
+                      />
+                    </Link>
+                  )}
+                </div>
               </div>
             ))}
             <div />

@@ -45,9 +45,9 @@ class Header extends Component {
           )} */}
           <div className="c_header__top">
             <div>
-              <Link to="login"> Login </Link>
+              {/* <Link to="login"> Login </Link>
               <Link to="#"> FAQ </Link>
-              <Link to="#"> Contact </Link>
+              <Link to="#"> Contact </Link> */}
             </div>
             <div>
               <i className="icon-instagram"> </i>
@@ -70,14 +70,14 @@ class Header extends Component {
               <li>Home </li>
               <li>Daily </li>
               <li>Looks </li>
-            </div>
-            <div className="c_header__burger">
-              {!this.state.isActive && (
-                <i className="icon-burger--button" onClick={this.toggle} />
-              )}
-              {this.state.isActive && (
-                <i className="icon-close--button" onClick={this.toggle} />
-              )}
+              <div className="c_header__burger">
+                {!this.state.isActive && (
+                  <i className="icon-burger--button" onClick={this.toggle} />
+                )}
+                {this.state.isActive && (
+                  <i className="icon-close--button" onClick={this.toggle} />
+                )}
+              </div>
             </div>
           </div>
         </nav>

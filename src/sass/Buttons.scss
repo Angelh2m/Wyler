@@ -1,0 +1,92 @@
+.button--pink {
+    background-color: #f8eeea;
+    border: solid #e8d8cd 2px;
+    color: black;
+    font-size: .7rem;
+    padding: .5rem 2rem;
+    font-family: Lato;
+    letter-spacing: .5px;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 1s;
+
+    &:hover {
+        transform: translate(15%);
+        transition: all 1s;
+        // letter-spacing: 2px;
+    }
+}
+
+.button--text {
+    color: black;
+    font-size: .7rem;
+    font-family: Lato;
+    letter-spacing: .5px;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 1s;
+    padding: .5rem 0rem;
+
+    &:hover {
+        transform: translate(25%);
+        transition: all 1s;
+        // letter-spacing: 2px;
+    }
+}
+
+.button--make-post {
+    margin-top: 2rem;
+    padding: 1rem 3rem;
+    border: solid 1px whitesmoke;
+    background-color: $color-dark-pink;
+}
+
+.button--comment {
+    background-color: #fbfbfb;
+    color: #4c4b4b;
+    font-size: .9rem;
+    border-radius: 5rem;
+    margin-right: 1.5rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    letter-spacing: 1px;
+    padding: 0.5rem 2rem;
+}
+
+
+.button--facebook {
+    background-color: #284290;
+    color: white;
+    font-weight: 600;
+    padding: 1rem 1.5rem;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    font-size: .9rem;
+    margin-right: .5rem;
+}
+
+.button--google {
+    background-color: white;
+    color: #505050;
+    font-weight: 600;
+    padding: 1rem 1.5rem;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    font-size: .9rem;
+    position: relative;
+}
+
+
+.button--salmon--inverted {
+    text-decoration: none;
+    color: white;
+    background-color: #fb6e59;
+    border-radius: 5px;
+    padding: .5rem;
+    margin-left: .5rem;
+    font-size: .8rem;
+    position: relative;
+    display: inline-block;
+    margin-bottom: .5rem;
+    float: right
+}

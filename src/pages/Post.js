@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from '@reach/router'
-import '../sass/index.scss'
+// import '../sass/index.scss'
 
 import Layout from '../components/layout'
 import Image from '../components/image'
