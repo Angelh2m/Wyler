@@ -17,7 +17,12 @@ function SEO({ description, lang, meta, keywords, title }) {
             }}
             title={title}
             titleTemplate={`%s | ${data.site.siteMetadata.title}`}
+
             meta={[
+              {
+                name: "google-site-verification",
+                content: "bPKW2alhS-mxTsMPaCtDWJMb7_rD1stXp-Ib5h6E1W8"
+              },
               {
                 name: `description`,
                 content: metaDescription,
@@ -54,9 +59,9 @@ function SEO({ description, lang, meta, keywords, title }) {
               .concat(
                 keywords.length > 0
                   ? {
-                      name: `keywords`,
-                      content: keywords.join(`, `),
-                    }
+                    name: `keywords`,
+                    content: keywords.join(`, `),
+                  }
                   : []
               )
               .concat(meta)}

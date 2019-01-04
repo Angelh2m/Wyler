@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import FormFields from '../FormFields/FormFields'
+// import FormFields from '../FormFields/FormFields'
 import './Comments.scss'
 import SocialLogin from '../SocialLogin/SocialLogin'
 import { ENDPOINTS } from '../../services/apiCalls'
@@ -10,22 +10,20 @@ export default class Comments extends Component {
 
     this.state = {
       comments: [],
-      userData: {},
+      userData: '',
       message: '',
     }
     this.upDateFormData = this.upDateFormData.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
     this.comments = {}
+
   }
 
-  componentWillReceiveProps(props) {
-    const comments = props.comments.filter(
-      comment => comment.public !== 'false'
-    )
-    const userData = JSON.parse(localStorage.getItem('social'))
+  componetDidMount() {
+    this.setState({ userData: JSON.parse(window.localStorage.getItem('social')) })
 
-    this.setState({ comments, userData })
   }
+
 
   upDateFormData(e) {
     this.setState({ [e.target.name]: e.target.value })
@@ -33,28 +31,38 @@ export default class Comments extends Component {
 
   async onSubmit(event) {
     const userData = this.state.userData
+    console.warn(userData);
 
-    const payload = {
-      socialID: userData.profileObj.googleId,
-      firstName: userData.profileObj.givenName,
-      lastName: userData.profileObj.familyName,
-      email: userData.profileObj.email,
-      avatar: userData.profileObj.imageUrl,
-      comment: this.state.comment || event.target.innerHTML,
-      slug: this.props.location.split('/')[2],
+    let payload;
+    try {
+      payload = {
+        socialID: userData.profileObj.googleId,
+        firstName: userData.profileObj.givenName,
+        lastName: userData.profileObj.familyName,
+        email: userData.profileObj.email,
+        avatar: userData.profileObj.imageUrl,
+        comment: this.state.comment || event.target.innerHTML,
+        slug: this.props.location.split('/')[2],
+      }
+
+      console.warn("payload", payload);
+
+      if (!payload.socialID || !payload.comment) {
+        return
+      }
+    } catch (error) {
+
     }
 
-    if (!payload.socialID || !payload.comment) {
-      return
-    }
 
     console.log(payload)
 
     const response = await ENDPOINTS.makeComment(payload)
 
-    if (response.ok) {
+    if (response) {
       this.setState({ message: 'Comment posted!' })
     }
+
   }
 
   render() {

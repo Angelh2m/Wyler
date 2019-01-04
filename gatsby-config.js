@@ -3,11 +3,12 @@ module.exports = {
     title: `Living With Annah`,
     description: `Travel, Food, Fashion, DYI and more!`,
     author: `Annah Isenberg`,
+    siteUrl: `https://www.livingwithannah.com`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    `gatsby-transformer-json`,
     `gatsby-plugin-sass`,
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -15,7 +16,6 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    // This will add all the markDown files to GraphQL
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -40,6 +40,13 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-131724438-1",
+      },
+    },
+
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

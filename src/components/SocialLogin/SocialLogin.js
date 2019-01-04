@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { GoogleLogin } from 'react-google-login'
-import TwitterLogin from 'react-twitter-auth'
+import { GoogleLogin } from 'react-google-login';
+// import TwitterLogin from 'react-twitter-auth'
 import googleIcon from '../../images/icons/google.png'
 // import FacebookLogin from 'react-facebook-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
@@ -9,12 +9,10 @@ import './Sociallogin.scss'
 export default class SocialLogin extends Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      userData: {},
-    }
+    this.state = { userData: {} }
 
     this.logUserOut = this.logUserOut.bind(this)
+    this.responseGoogle = this.responseGoogle.bind(this)
   }
 
   onFailed(resp) {
@@ -25,22 +23,23 @@ export default class SocialLogin extends Component {
     console.log(resp)
   }
 
-  componentClicked(e) {
-    console.log(e)
-  }
 
-  componentDidMount() {
-    const userData = JSON.parse(localStorage.getItem('social'))
+  // componentDidMount() {
+  //   console.log("SOCIAL LOGINs");
 
-    if (!userData) {
-      // ENABLE POP OUT
-      return this.setState({ message: 'You are not logged in' })
-    }
+  //   const userData = JSON.parse(localStorage.getItem('social'))
 
-    if (userData) {
-      return this.setState({ userData })
-    }
-  }
+  //   localStorage.setItem('social', "DON")
+
+  //   if (!userData) {
+  //     // ENABLE POP OUT
+  //     return this.setState({ message: 'You are not logged in' })
+  //   }
+
+  //   if (userData) {
+  //     return this.setState({ userData })
+  //   }
+  // }
 
   logUserOut() {
     localStorage.removeItem('social')
@@ -51,31 +50,34 @@ export default class SocialLogin extends Component {
   // onFailure={this.onFailed} onSuccess={this.onSuccess}
   // requestTokenUrl="http://localhost:4000/api/v1/auth/twitter/reverse" />
 
+  responseFacebook(res) {
+    console.log('FBRESPO', res)
+  }
+
+  componentClicked(res) {
+    console.log(res)
+  }
+
+  responseGoogle(response) {
+    console.log("GOOGLE RESPONSe ", response)
+    localStorage.setItem('social', JSON.stringify(response))
+    this.setState({ userData: response })
+  }
+
   render() {
-    const responseGoogle = response => {
-      console.log(response)
-      localStorage.setItem('social', JSON.stringify(response))
-      this.setState({ userData: response })
-    }
+    // const 
 
-    const loggedUser = this.state.userData ? this.state.userData.profileObj : ''
-
-    const componentClicked = res => {
-      console.log(res)
-    }
-
-    const responseFacebook = res => {
-      console.log('FBRESPO', responseFacebook)
-    }
+    // const loggedUser = this.state.userData ? this.state.userData.profileObj : ''
 
     return (
       <div className="social--login">
+
         <FacebookLogin
           appId="209211756650633"
-          autoLoad={true}
+          autoLoad={false}
           fields="name,email,picture"
-          onClick={componentClicked}
-          callback={responseFacebook}
+          onClick={this.componentClicked}
+          callback={this.responseFacebook}
           icon="icon-facebook"
           render={renderProps => (
             <button className="button--facebook" onClick={renderProps.onClick}>
@@ -84,11 +86,13 @@ export default class SocialLogin extends Component {
             </button>
           )}
         />
+
+
         <GoogleLogin
           clientId="431810918658-gedmt7omgjmlk18vgb50g2eqjvr8ln4q.apps.googleusercontent.com"
           buttonText="Login"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
+          onSuccess={this.responseGoogle}
+          onFailure={this.responseGoogle}
           render={renderProps => (
             <button className="button--google" onClick={renderProps.onClick}>
               <img className="google__login--image" src={googleIcon} alt="" />
@@ -97,24 +101,18 @@ export default class SocialLogin extends Component {
           )}
         />
 
+
         <div>
-          {loggedUser && (
-            <div className="container--flex comments__header-format">
-              <img
-                className="form-comments__avatar"
-                src="https://lh6.googleusercontent.com/-S0uKoBOmR4c/AAAAAAAAAAI/AAAAAAAADIs/HfTIwyQkpF4/s96-c/photo.jpg"
-                alt=""
-              />
 
-              <span className="comments__user">
-                {loggedUser.givenName} {loggedUser.familyName}
-              </span>
+          <div className="container--flex comments__header-format">
+            <img className="form-comments__avatar" src="https://lh6.googleusercontent.com/-S0uKoBOmR4c/AAAAAAAAAAI/AAAAAAAADIs/HfTIwyQkpF4/s96-c/photo.jpg" alt="" />
 
-              <span className="link" onClick={this.logUserOut}>
-                LOGOUT
-              </span>
-            </div>
-          )}
+            {/* <span className="comments__user" >{loggedUser.givenName} {loggedUser.familyName}</span> */}
+
+            {/* <span className="link" onClick={this.logUserOut} >LOGOUT</span> */}
+          </div>
+
+
         </div>
       </div>
     )

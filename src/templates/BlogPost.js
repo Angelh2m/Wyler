@@ -5,6 +5,7 @@ import Img from 'gatsby-image'
 // import './BlogPost.scss'
 import { Link } from 'gatsby'
 import { dateFormat } from '../util/dateFormat'
+import Comments from '../components/Comments/Comments';
 
 export default function BlogPost(props) {
   console.log(props)
@@ -45,6 +46,7 @@ export default function BlogPost(props) {
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
       </article>
+      <Comments />
     </Layout>
   )
 }
