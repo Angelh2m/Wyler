@@ -20,8 +20,7 @@ export default class Comments extends Component {
   }
 
   componetDidMount() {
-    this.setState({ userData: JSON.parse(window.localStorage.getItem('social')) })
-
+    this.setState({ userData: JSON.parse(localStorage.getItem('social')) })
   }
 
 
@@ -30,8 +29,8 @@ export default class Comments extends Component {
   }
 
   async onSubmit(event) {
-    const userData = this.state.userData
-    console.warn(userData);
+
+    let userData = JSON.parse(localStorage.getItem('social'));
 
     let payload;
     try {
@@ -42,20 +41,13 @@ export default class Comments extends Component {
         email: userData.profileObj.email,
         avatar: userData.profileObj.imageUrl,
         comment: this.state.comment || event.target.innerHTML,
-        slug: this.props.location.split('/')[2],
+        slug: window.location.pathname,
       }
 
-      console.warn("payload", payload);
-
-      if (!payload.socialID || !payload.comment) {
-        return
-      }
-    } catch (error) {
-
-    }
+    } catch (error) { console.log(error) }
 
 
-    console.log(payload)
+    console.log("SEND HERE", payload);
 
     const response = await ENDPOINTS.makeComment(payload)
 
@@ -73,20 +65,20 @@ export default class Comments extends Component {
         <h3>Comments</h3>
         <div className="quickreply ">
           <button className="quickreply__button" onClick={this.onSubmit}>
-            {' '}
-            👻 This is awesome!
+            <span role="img" aria-label="Ghost"> 👻 </span>
+            This is awesome!
           </button>
           <button className="quickreply__button" onClick={this.onSubmit}>
-            {' '}
-            😉 Love the topic!
+            <span role="img" aria-label="Happy"> 😉 </span>
+            Love the topic!
           </button>
           <button className="quickreply__button" onClick={this.onSubmit}>
-            {' '}
-            👻 Kudos to shooping
+            <span role="img" aria-label="Ghost"> 👻  </span>
+            Kudos
           </button>
           <button className="quickreply__button" onClick={this.onSubmit}>
-            {' '}
-            👻 Keep it up!
+            <span role="img" aria-label="Ghost"> 👻  </span>
+            Keep it up!
           </button>
         </div>
 

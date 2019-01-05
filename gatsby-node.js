@@ -41,22 +41,8 @@ exports.createPages = async ({ graphql, actions }) => {
                         },
                     })
                 })
-            }).then(async () => {
 
-
-                const { data } = await graphql(`
-                    {
-                        allMarkdownRemark{
-                            edges {
-                                node { 
-                                    frontmatter{title category}
-                                }
-                            }
-                        }
-                    }
-                `)
-
-                data.allMarkdownRemark.edges.forEach(({ node }) => {
+                result.data.allMarkdownRemark.edges.forEach(({ node }) => {
                     actions.createPage({
                         path: `${node.frontmatter.category}`,
                         component: path.resolve(`src/templates/Category.js`),
@@ -64,11 +50,10 @@ exports.createPages = async ({ graphql, actions }) => {
                             id: node.frontmatter.category,
                         },
                     })
-
                 })
 
-
             })
+
         )
     })
 }

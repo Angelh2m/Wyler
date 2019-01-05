@@ -5,20 +5,17 @@ import SEO from '../components/seo'
 import Img from 'gatsby-image'
 
 import Sidebar from '../components/Sidebar/Sidebar';
-import Header from '../components/header/Header';
-import Footer from '../components/Footer/Footer';
+
 
 // import '../sass/Main.scss'
+import Layout from '../components/layout';
 
 export default function Category(props) {
   const posts = props.data.allMarkdownRemark.edges
   console.warn(posts)
   // try { window.scrollTo(0, 0) } catch (error) { console.log(err)}
   return (
-    <div>
-      <Header />
-
-
+    <Layout>
       <SEO
         title={props.pageContext.id}
         description={'Description'}
@@ -55,8 +52,7 @@ export default function Category(props) {
       </main>
 
 
-      <Footer />
-    </div>
+    </Layout>
   )
 }
 

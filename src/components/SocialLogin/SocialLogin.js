@@ -5,6 +5,7 @@ import googleIcon from '../../images/icons/google.png'
 // import FacebookLogin from 'react-facebook-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import './Sociallogin.scss'
+import { ENDPOINTS } from '../../services/apiCalls'
 
 export default class SocialLogin extends Component {
   constructor(props) {
@@ -58,10 +59,16 @@ export default class SocialLogin extends Component {
     console.log(res)
   }
 
-  responseGoogle(response) {
-    console.log("GOOGLE RESPONSe ", response)
+  async responseGoogle(response) {
+    // console.log("GOOGLE RESPONSe ", response)
     localStorage.setItem('social', JSON.stringify(response))
     this.setState({ userData: response })
+
+    const res = await ENDPOINTS.registerUser(this.state.userData)
+
+    console.log("LOGIN", res);
+
+
   }
 
   render() {

@@ -81,6 +81,19 @@ const login = user => {
     .catch(error => console.log(error))
 }
 
+const registerUser = user => {
+  return fetch(`${API_ENDPOINT}/register`, {
+    method: 'POST',
+    body: JSON.stringify(user),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(response => response.json())
+    .then(token => token)
+    .catch(error => console.log(error))
+}
+
 const makeComment = commentPayload => {
   return fetch(`${API_ENDPOINT}/comments/user`, {
     method: 'POST',
@@ -102,4 +115,5 @@ export const ENDPOINTS = {
   updatePost,
   login,
   makeComment,
+  registerUser,
 }

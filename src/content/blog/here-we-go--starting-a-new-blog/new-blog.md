@@ -1,6 +1,6 @@
 ---
 title: Here We Go.... Starting A New Blog
-date: '2018-12-3T22:12:03.284Z'
+date: '2018-12-03T16:28:44+00:00'
 slug: here-we-go--starting-a-new-blog
 category: lifestyle
 featuredImage: "./new-blog.jpeg"

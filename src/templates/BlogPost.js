@@ -69,6 +69,7 @@ export const articleQuery = graphql`
                 }
               }
             }
+            
           }
           html
         }

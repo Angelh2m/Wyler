@@ -1,6 +1,6 @@
 ---
 title: Weekend Recap & Walmart Grocery Review & Monday Night Dinner
-date: '2018-12-4T22:12:03.284Z'
+date: '2018-12-06T16:32:24+00:00'
 slug: weekend-recap--walmart-grocery-review--monday-night-dinner
 category: lifestyle
 featuredImage: "./weekend.jpeg"
