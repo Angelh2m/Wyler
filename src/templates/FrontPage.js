@@ -73,6 +73,16 @@ export default function FrontPage() {
                     id="___gatsby"
                     dangerouslySetInnerHTML={{ __html: post.node.excerpt }}
                   />
+
+                  <Link
+                    to={`${post.node.frontmatter.category}/${
+                      post.node.frontmatter.slug
+                      }`}
+                  >
+
+                    <span className="button--read-more ">
+                      READ MORE<i class="icon-arrow-right"></i></span>
+                  </Link>
                 </div>
               </div>
             ))}

@@ -2,8 +2,11 @@
 title: My favorite recipes from 2018
 date: '2018-12-31T16:28:44+00:00'
 slug: my-favorite-recipes-from-2018
-category: Recipes
+category: recipes
 featuredImage: "./fav-recipes.jpeg"
+excerpt: "So, since it's now 2019, I’ve been thinking a lot about all my favorite recipes I tried in 2018.
+Actually, these are my favorite recipes that I’ve tried since September… so only 3 months. But I’ve tried a lot! When we were living in Brooklyn, we only had access to a stove."
+
 ---
 
   

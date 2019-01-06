@@ -10,6 +10,8 @@ import './Category.scss';
 export default function Category(props) {
   const posts = props.data.allMarkdownRemark.edges
   console.warn(posts)
+  console.log(props);
+
   // try { window.scrollTo(0, 0) } catch (error) { console.log(err)}
   return (
     <Layout>
@@ -19,7 +21,8 @@ export default function Category(props) {
         keywords={[`gatsby`, `application`, `react`]}
       />
 
-      <main className="container--flex">
+      <h2>Articles in: {props.pathContext.id}</h2>
+      <div className="container--flex">
         <article className="container--flex posts">
 
           <div className="col-7" >
@@ -64,7 +67,7 @@ export default function Category(props) {
             <Sidebar />
           </aside>
         </article>
-      </main>
+      </div>
 
 
     </Layout>

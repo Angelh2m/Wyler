@@ -17,7 +17,7 @@
     }
 }
 
-.button--text {
+.button--read-more {
     color: black;
     font-size: .7rem;
     font-family: Lato;
@@ -26,6 +26,7 @@
     display: inline-block;
     transition: all 1s;
     padding: .5rem 0rem;
+    float: right;
 
     &:hover {
         transform: translate(25%);

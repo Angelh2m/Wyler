@@ -1,3 +1,5 @@
+@import '../sass/Media.scss';
+
 /* GRID */
 
 $margin-bottom : 11rem;
@@ -8,6 +10,14 @@ $max-witdh: 68rem;
     max-width: $max-witdh;
     display: block;
     margin: 0 auto;
+
+    @include tablet {
+        max-width: 39rem;
+    }
+
+    @include desktop {
+        max-width: 50rem;
+    }
 }
 
 .container--flex {

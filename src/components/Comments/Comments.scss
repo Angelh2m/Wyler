@@ -1,3 +1,5 @@
+@import '../../sass/Media.scss';
+
 .comments {
     background-color: #fbfbfb;
     border: solid 3px #ececec;
@@ -42,8 +44,12 @@
 }
 
 .quickreply {
-    display: flex;
+
     cursor: pointer;
+
+    @include tablet {
+        display: flex;
+    }
 
     &__button {
         cursor: pointer;

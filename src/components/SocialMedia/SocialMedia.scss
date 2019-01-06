@@ -1,3 +1,5 @@
+@import '../../sass/Media.scss';
+
 .posts {
     &__meta {
         margin-bottom: 1rem;
@@ -23,6 +25,11 @@
             background-color: antiquewhite;
             height: 3rem;
             width: 3rem;
+            display: none;
+
+            @include tablet {
+                display: block
+            }
         }
 
         &__toggle {
