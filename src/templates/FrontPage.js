@@ -11,7 +11,7 @@ export default function FrontPage() {
       <StaticQuery
         query={graphql`
           query getAllposts {
-            allMarkdownRemark {
+            allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC   }  ) {
               edges {
                 node {
                   frontmatter {
@@ -22,7 +22,7 @@ export default function FrontPage() {
 
                     featuredImage {
                       childImageSharp {
-                        fluid(maxWidth: 800) {
+                        fluid(maxWidth: 800 , toFormat: WEBP ) {
                           # Choose either the fragment including a small base64ed image, a traced placeholder SVG, or one without.
                           ...GatsbyImageSharpFluid
                         }

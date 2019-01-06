@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 import './Header.scss'
 // import classNames from 'classNames';
 
+
 class Header extends Component {
   constructor(props) {
     super(props)
@@ -16,7 +17,7 @@ class Header extends Component {
     this.searchTerm = React.createRef()
   }
 
-  componentDidUpdate() {}
+  componentDidUpdate() { }
 
   toggle() {
     this.setState({ isActive: !this.state.isActive })
@@ -39,6 +40,7 @@ class Header extends Component {
 
     return (
       <div className="c_header">
+
         <nav>
           {/* {this.searchTerm.length > 1 && (
             <Redirect to={`/${this.searchTerm}`} />
@@ -64,20 +66,33 @@ class Header extends Component {
               </Link>
             </h1>
             <div>
-              <li>Style </li>
-              <li>Beauty </li>
-              <li>Travel </li>
-              <li>Home </li>
-              <li>Daily </li>
-              <li>Looks </li>
-              <div className="c_header__burger">
-                {!this.state.isActive && (
-                  <i className="icon-burger--button" onClick={this.toggle} />
-                )}
-                {this.state.isActive && (
-                  <i className="icon-close--button" onClick={this.toggle} />
-                )}
-              </div>
+              <ul>
+                <li>
+                  <Link to="/lifestyle">
+                    Lifestyle
+                </Link>
+                </li>
+                <li>
+                  <Link to="/travel">
+                    Travel
+                </Link>
+                </li>
+                <li>
+                  <Link to="/">
+                    Home
+                </Link>
+                </li>
+
+
+                {/* <div className="c_header__burger">
+                  {!this.state.isActive && (
+                    <i className="icon-burger--button" onClick={this.toggle} />
+                  )}
+                  {this.state.isActive && (
+                    <i className="icon-close--button" onClick={this.toggle} />
+                  )}
+                </div> */}
+              </ul>
             </div>
           </div>
         </nav>
@@ -87,12 +102,12 @@ class Header extends Component {
           </div>
         )}
 
-        <div
+        {/* <div
           className={`c_header__side_navigation ${
             this.state.isActive
               ? 'c_header__side_navigation__show'
               : 'c_header__side_navigation__hidden'
-          } `}
+            } `}
         >
           <i onClick={this.search} className="icon-search--button" />
           <input
@@ -114,7 +129,9 @@ class Header extends Component {
           <li>ACCESSORIES</li>
           <li>CLASSIC</li>
           <li>SPRING</li>
-        </div>
+        </div> */}
+
+
       </div>
     )
   }

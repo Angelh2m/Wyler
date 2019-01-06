@@ -11,3 +11,13 @@
     margin-left: 2rem;
     margin-right: 0rem !important;
 }
+
+.form-comments {
+    margin-bottom: 1.5rem;
+
+    &__avatar {
+        border-radius: 49%;
+        width: 2rem;
+        margin: 0
+    }
+}

@@ -45,8 +45,10 @@ export default function BlogPost(props) {
           id="___gatsby"
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
+
+        <Comments />
+
       </article>
-      <Comments />
     </Layout>
   )
 }
@@ -63,9 +65,10 @@ export const articleQuery = graphql`
 
             featuredImage {
               childImageSharp {
-                fluid(maxWidth: 900) {
+                fluid(maxWidth: 900 , toFormat: WEBP) {
                   # Choose either the fragment including a small base64ed image, a traced placeholder SVG, or one without.
                   ...GatsbyImageSharpFluid
+
                 }
               }
             }

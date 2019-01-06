@@ -21,6 +21,7 @@
         color: #284290;
         font-weight: 700;
         margin-left: 1rem;
+        margin-right: .5rem;
     }
 
     &__form {
@@ -101,13 +102,4 @@
         }
     }
 
-}
-
-.form-comments {
-    margin-bottom: 1.5rem;
-
-    &__avatar {
-        border-radius: 49%;
-        width: 2rem;
-    }
 }

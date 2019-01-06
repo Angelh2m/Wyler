@@ -382,18 +382,18 @@ hgroup {
   margin-bottom: 1.45rem;
 }
 
-ul {
-  margin-left: 1.45rem;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.45rem;
-  list-style-position: outside;
-  list-style-image: none;
-}
+// ul {
+//   margin-left: 1.45rem;
+//   margin-right: 0;
+//   margin-top: 0;
+//   padding-bottom: 0;
+//   padding-left: 0;
+//   padding-right: 0;
+//   padding-top: 0;
+//   margin-bottom: 1.45rem;
+//   list-style-position: outside;
+//   list-style-image: none;
+// }
 
 ol {
   margin-left: 1.45rem;
@@ -593,17 +593,17 @@ ul li {
   padding-left: 0;
 }
 
-li>ol {
-  margin-left: 1.45rem;
-  margin-bottom: calc(1.45rem / 2);
-  margin-top: calc(1.45rem / 2);
-}
+// li>ol {
+//   margin-left: 1.45rem;
+//   margin-bottom: calc(1.45rem / 2);
+//   margin-top: calc(1.45rem / 2);
+// }
 
-li>ul {
-  margin-left: 1.45rem;
-  margin-bottom: calc(1.45rem / 2);
-  margin-top: calc(1.45rem / 2);
-}
+// li>ul {
+//   margin-left: 1.45rem;
+//   margin-bottom: calc(1.45rem / 2);
+//   margin-top: calc(1.45rem / 2);
+// }
 
 blockquote *:last-child {
   margin-bottom: 0;
@@ -723,6 +723,10 @@ pre tt:after {
 //   text-decoration: none;
 // }
 
+a {
+  text-decoration: none;
+}
+
 .link {
   cursor: pointer;
   color: #fb6e59;
@@ -734,6 +738,10 @@ pre tt:after {
 .link:hover {
   text-decoration: underline;
   transition: all 1s;
+}
+
+ul {
+  margin: 0
 }
 
 textarea {

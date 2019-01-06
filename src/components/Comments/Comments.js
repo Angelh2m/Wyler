@@ -32,26 +32,27 @@ export default class Comments extends Component {
 
     let userData = JSON.parse(localStorage.getItem('social'));
 
+
     let payload;
     try {
       payload = {
-        socialID: userData.profileObj.googleId,
-        firstName: userData.profileObj.givenName,
-        lastName: userData.profileObj.familyName,
-        email: userData.profileObj.email,
-        avatar: userData.profileObj.imageUrl,
-        comment: this.state.comment || event.target.innerHTML,
-        slug: window.location.pathname,
+        name: userData.name,
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        avatar: userData.avatar,
+        id: userData.id,
+        exp: userData.exp,
+        location: window.location.pathname
       }
 
     } catch (error) { console.log(error) }
 
 
-    console.log("SEND HERE", payload);
-
     const response = await ENDPOINTS.makeComment(payload)
 
     if (response) {
+      console.log(response);
+
       this.setState({ message: 'Comment posted!' })
     }
 
