@@ -26,6 +26,8 @@ $max-witdh: 68rem;
 
     @include tablet {
         display: flex;
+        max-width: $max-witdh;
+        margin: 0 auto;
     }
 
     hr {

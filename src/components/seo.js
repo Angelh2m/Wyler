@@ -24,6 +24,14 @@ function SEO({ description, lang, meta, keywords, title }) {
                 content: "bPKW2alhS-mxTsMPaCtDWJMb7_rD1stXp-Ib5h6E1W8"
               },
               {
+                name: "msvalidate.01",
+                content: "9DF2928A5A20B293151BE340944A9788"
+              },
+              {
+                name: "p:domain_verify",
+                content: "12d638895bd5e0ca6611ea6a5e88dad3"
+              },
+              {
                 name: `description`,
                 content: metaDescription,
               },

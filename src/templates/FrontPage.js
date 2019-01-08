@@ -3,7 +3,7 @@ import { StaticQuery, graphql } from 'gatsby'
 import { Link } from '@reach/router'
 import Img from 'gatsby-image'
 import SocialMedia from '../components/SocialMedia/SocialMedia'
-// import './FrontPage.scss'
+import './FrontPage.scss'
 
 export default function FrontPage() {
   return (
@@ -22,7 +22,7 @@ export default function FrontPage() {
 
                     featuredImage {
                       childImageSharp {
-                        fluid(maxWidth: 800 , toFormat: WEBP ) {
+                        fluid(maxWidth: 800 ) {
                           # Choose either the fragment including a small base64ed image, a traced placeholder SVG, or one without.
                           ...GatsbyImageSharpFluid
                         }
@@ -68,21 +68,27 @@ export default function FrontPage() {
                       />
                     </Link>
                   )}
-                  <div
-                    key={`body`}
-                    id="___gatsby"
-                    dangerouslySetInnerHTML={{ __html: post.node.excerpt }}
-                  />
 
-                  <Link
-                    to={`${post.node.frontmatter.category}/${
-                      post.node.frontmatter.slug
-                      }`}
-                  >
+                  <div className="posts__content">
+                    <div
+                      key={`body`}
 
-                    <span className="button--read-more ">
-                      READ MORE<i class="icon-arrow-right"></i></span>
-                  </Link>
+                      dangerouslySetInnerHTML={{ __html: post.node.excerpt }}
+                    />
+
+                    <Link
+                      to={`${post.node.frontmatter.category}/${
+                        post.node.frontmatter.slug
+                        }`}
+                    >
+                      <span className="button--read-more ">
+                        READ MORE<i className="icon-arrow-right"></i></span>
+                    </Link>
+
+                  </div>
+
+
+
                 </div>
               </div>
             ))}

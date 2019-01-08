@@ -759,8 +759,18 @@ h2 {
 
 p {
   margin-bottom: 1.45rem;
-  text-align: justify;
-  font-size: 1.2rem;
+  // text-align: justify;
+  font-size: 1.1rem;
   line-height: 1.6;
   letter-spacing: .5px;
+  --x-height-multiplier: 0.375;
+  --baseline-multiplier: 0.17;
+  font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+  letter-spacing: .01rem;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 21px;
+  line-height: 1.9;
+  letter-spacing: -.003em;
+  color: #292929;
 }

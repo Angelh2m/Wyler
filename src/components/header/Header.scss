@@ -1,4 +1,5 @@
 @import '../../sass/variables';
+@import '../../sass/Media';
 
 .c_header {
     width: 100%;
@@ -17,11 +18,15 @@
     &__top {
         background-color: $color-pink;
         padding: $main-margin-padding/3 $main-margin-padding;
-        display: flex;
+
         justify-content: space-between;
         position: fixed;
         width: 100%;
         z-index: 999;
+
+        @include tablet {
+            display: flex;
+        }
 
         a {
             font-size: .8rem;
@@ -35,18 +40,32 @@
 
     &__bottom {
         padding: $main-margin-padding/3 $main-margin-padding;
-        display: flex;
         justify-content: space-between;
         border-bottom: solid 1px whitesmoke;
         align-items: center;
         padding: 1rem 2rem;
         padding-top: 3.5rem;
 
+        @include tablet {
+            display: flex;
+        }
+
         h1 {
             margin: 0;
         }
 
         ul {
+            margin: 0;
+            padding: 0;
+            text-align: right;
+            margin-top: 1.5rem;
+            margin-bottom: .5rem;
+
+            @include tablet {
+                margin-top: 1rem;
+            }
+
+
             a {
                 font-size: 1rem;
             }

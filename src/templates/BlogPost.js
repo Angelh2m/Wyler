@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Img from 'gatsby-image'
@@ -7,51 +7,59 @@ import { Link } from 'gatsby'
 import { dateFormat } from '../util/dateFormat'
 import Comments from '../components/Comments/Comments';
 
-export default function BlogPost(props) {
-  console.log(props)
-  console.log(props.data)
 
-  const post = props.data.allMarkdownRemark.edges[0].node
+export default class BlogPost extends Component {
 
-  return (
-    <Layout>
-      <SEO
-        title={post.frontmatter.title}
-        description={post.frontmatter.title}
-        keywords={[`${post.frontmatter.title}`]}
-      />
+  componentDidMount() {
+    try {
+      window.scrollTo(0, 0)
+    } catch (error) { }
+  }
 
-      <article className="container--block ">
-        <div className="posts__meta">
-          <div className="text__date">
-            <Link
-              to={`${post.frontmatter.category}`}
-              className="text__category"
-            >
-              {post.frontmatter.category}
-            </Link>
-            <span>{dateFormat(post.frontmatter.date)}</span>
-          </div>
-        </div>
-
-        <h1>{post.frontmatter.title}</h1>
-        {
-          post.frontmatter.featuredImage && (
-            <Img fluid={post.frontmatter.featuredImage.childImageSharp.fluid} />
-          )
-        }
-        <div
-          key={`body`}
-          id="___gatsby"
-          dangerouslySetInnerHTML={{ __html: post.html }}
+  render() {
+    const post = this.props.data.allMarkdownRemark.edges[0].node
+    return (
+      <Layout>
+        <SEO
+          title={post.frontmatter.title}
+          description={post.frontmatter.title}
+          keywords={[`${post.frontmatter.title}`]}
         />
 
-        <Comments />
+        <article className="container--block ">
+          <div className="posts__meta">
+            <div className="text__date">
+              <Link
+                to={`${post.frontmatter.category}`}
+                className="text__category"
+              >
+                {post.frontmatter.category}
+              </Link>
+              <span>{dateFormat(post.frontmatter.date)}</span>
+            </div>
+          </div>
 
-      </article>
-    </Layout>
-  )
+          <h1>{post.frontmatter.title}</h1>
+          {
+            post.frontmatter.featuredImage && (
+              <Img fluid={post.frontmatter.featuredImage.childImageSharp.fluid} />
+            )
+          }
+          <div
+            key={`body`}
+            dangerouslySetInnerHTML={{ __html: post.html }}
+          />
+
+          <Comments />
+
+        </article>
+      </Layout>
+    )
+  }
 }
+
+
+
 
 export const articleQuery = graphql`
   query($id: String!) {
@@ -65,7 +73,7 @@ export const articleQuery = graphql`
 
             featuredImage {
               childImageSharp {
-                fluid(maxWidth: 900 , toFormat: WEBP) {
+                fluid(maxWidth: 900 ) {
                   # Choose either the fragment including a small base64ed image, a traced placeholder SVG, or one without.
                   ...GatsbyImageSharpFluid
 

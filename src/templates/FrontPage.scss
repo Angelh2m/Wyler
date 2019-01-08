@@ -1,45 +1,28 @@
 @import '../sass/Media.scss';
 
-.posts {
-    flex: 3;
 
-    section {
-        position: relative;
 
-        @include desktop {
-            margin-bottom: 20rem;
 
-        }
-    }
+.posts__content {
+    background-color: white;
+    margin: auto;
+    position: absolute;
+    bottom: 0;
+    width: 84%;
+    padding: 2rem 2rem;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    transform: translateY(60%);
 
-    &__content {
-        background-color: white;
-        padding: 2rem 0rem;
-        overflow: hidden;
-        margin: 0 auto;
+    @include desktop {
+        margin: auto;
+        position: absolute;
+        bottom: 0;
+        width: 80%;
+        padding: 3rem 3rem;
+        max-width: 40rem;
+        /* left: 0; */
         right: 0;
-        left: 0;
-
-        @include desktop {
-            margin: auto;
-            position: absolute;
-            top: -6rem;
-            width: 80%;
-            padding: 3rem 3rem;
-            max-width: 40rem;
-            /* left: 0; */
-            right: 0;
-        }
-    }
-
-    p {
-        line-height: 1.8;
-        font-family: 'Lato', sans-serif;
-        color: #4d4d4d;
-    }
-
-    &__social-column {
-        border-top: solid 2px #f0dcd5;
-        margin-right: 2rem;
     }
 }

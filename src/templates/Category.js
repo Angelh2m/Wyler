@@ -56,6 +56,15 @@ export default function Category(props) {
                   </Link>
 
                   <p>{post.node.excerpt}</p>
+
+                  <Link
+                    to={`${post.node.frontmatter.category}/${
+                      post.node.frontmatter.slug
+                      }`}
+                  >
+                    <span className="button--read-more ">
+                      READ MORE<i className="icon-arrow-right"></i></span>
+                  </Link>
                 </div>
 
               </div>

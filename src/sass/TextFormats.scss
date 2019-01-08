@@ -1,3 +1,5 @@
+@import '../sass//Media.scss';
+
 .text__category {
     text-transform: uppercase;
     font-weight: 600;
@@ -34,5 +36,10 @@
 }
 
 .front__spacer {
-    margin-bottom: 4.5rem;
+    margin-bottom: 9.5rem;
+
+    @include tablet {
+        margin-bottom: 12rem;
+    }
+
 }

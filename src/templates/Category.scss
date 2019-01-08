@@ -6,33 +6,70 @@
     &__search {
         display: block;
         position: relative;
-        margin-bottom: 4rem;
+        margin-bottom: -2rem;
+
+        @include desktop {
+            width: 49%;
+            margin-bottom: 3rem;
+        }
 
     }
 
     &__one {
 
-        top: 5%;
+
+        // top: 5%;
+        // background-color: white;
+        // padding: 1rem 1rem;
+        // overflow: hidden;
+        // margin: 0 auto;
+        // right: 0;
+        // transform: translateY(-50%);
+
+        top: 50%;
         background-color: white;
-        padding: 1rem 1rem;
+        padding: 2rem 2rem;
+        width: 92%;
         overflow: hidden;
         margin: 0 auto;
         right: 0;
-        // transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        font-size: 0rem;
 
+        @include desktop {
+            top: 0;
+            background-color: white;
+            padding: 0rem 2rem;
+            width: 92%;
+            overflow: hidden;
+            margin: 0 auto;
+            right: 0;
+            /* -webkit-transform: translateY(-50%); */
+            transform: translateY(-59%);
+            font-size: 0rem;
+            position: absolute;
+            right: 0;
+            transform: translateX(100%);
+        }
+
+
+        p {
+            font-size: .9rem;
+        }
     }
 
     @include tablet {
         &__one {
-            position: absolute;
-            top: 50%;
-            background-color: white;
-            padding: 4rem 4rem;
-            width: 50%;
-            overflow: hidden;
-            margin: 0 auto;
-            right: 0;
-            transform: translateY(-50%);
+            // position: absolute;
+            // top: 50%;
+            // background-color: white;
+            // padding: 4rem 4rem;
+            // width: 50%;
+            // overflow: hidden;
+            // margin: 0 auto;
+            // right: 0;
+            // transform: translateY(-50%);
 
         }
     }
