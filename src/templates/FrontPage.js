@@ -39,9 +39,9 @@ export default function FrontPage() {
           }
         `}
         render={data => (
-          <>
+          <article>
             {data.allMarkdownRemark.edges.map((post, i) => (
-              <div key={i} className="container--flex front__spacer">
+              <section key={i} className="container--flex front__spacer">
                 <div className="col-1 posts__social-column">
                   <SocialMedia post={post.node.frontmatter} />
                 </div>
@@ -90,10 +90,10 @@ export default function FrontPage() {
 
 
                 </div>
-              </div>
+              </section>
             ))}
             <div />
-          </>
+          </article>
         )}
       />
     </div>

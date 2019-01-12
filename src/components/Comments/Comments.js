@@ -40,13 +40,17 @@ export default class Comments extends Component {
         firstName: userData.firstName,
         lastName: userData.lastName,
         avatar: userData.avatar,
-        id: userData.id,
+        socialID: userData.socialID,
         exp: userData.exp,
-        location: window.location.pathname
+        comment: this.state.comment,
+        location: window.location.pathname,
       }
 
     } catch (error) { console.log(error) }
 
+    if (!payload.socialID || !payload.comment) {
+      return
+    }
 
     const response = await ENDPOINTS.makeComment(payload)
 

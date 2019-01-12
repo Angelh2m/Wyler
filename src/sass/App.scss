@@ -1,3 +1,5 @@
+@import "../sass/Media";
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -757,6 +759,8 @@ h2 {
   margin-bottom: 3rem;
 }
 
+
+
 p {
   margin-bottom: 1.45rem;
   // text-align: justify;
@@ -769,8 +773,15 @@ p {
   letter-spacing: .01rem;
   font-weight: 400;
   font-style: normal;
-  font-size: 21px;
+  font-size: 1.2rem;
+  ;
   line-height: 1.9;
   letter-spacing: -.003em;
   color: #292929;
+}
+
+@include tablet {
+  p {
+    font-size: 1rem;
+  }
 }

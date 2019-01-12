@@ -22,12 +22,12 @@ export default function Category(props) {
       />
 
       <h2>Articles in: {props.pathContext.id}</h2>
-      <div className="container--flex">
+      <div>
         <article className="container--flex posts">
 
           <div className="col-7" >
             {posts.map((post, i) => (
-              <div key={i} className="layout__search">
+              <article key={i} className="layout__search">
 
                 <div>
 
@@ -67,7 +67,7 @@ export default function Category(props) {
                   </Link>
                 </div>
 
-              </div>
+              </article>
 
             ))}
 

@@ -13,7 +13,7 @@ export default function Navigation() {
           <Link to="postTwo">POST 2</Link>
           <Link to="PostThree">POST 3</Link>
         </nav>
-        <FadeTransitionRouter />
+        {/* <FadeTransitionRouter /> */}
       </div>
     </div>
   )

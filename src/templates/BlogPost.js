@@ -26,7 +26,7 @@ export default class BlogPost extends Component {
           keywords={[`${post.frontmatter.title}`]}
         />
 
-        <article className="container--block ">
+        <article className="container--block " role="main">
           <div className="posts__meta">
             <div className="text__date">
               <Link
@@ -35,14 +35,14 @@ export default class BlogPost extends Component {
               >
                 {post.frontmatter.category}
               </Link>
-              <span>{dateFormat(post.frontmatter.date)}</span>
+              <time dateTime={dateFormat(post.frontmatter.date)} >{dateFormat(post.frontmatter.date)}</time>
             </div>
           </div>
 
           <h1>{post.frontmatter.title}</h1>
           {
             post.frontmatter.featuredImage && (
-              <Img fluid={post.frontmatter.featuredImage.childImageSharp.fluid} />
+              <Img alt={post.frontmatter.title} fluid={post.frontmatter.featuredImage.childImageSharp.fluid} />
             )
           }
           <div

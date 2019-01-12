@@ -12,9 +12,9 @@ export default class SocialLogin extends Component {
   constructor(props) {
     super(props)
     this.state = { userData: {} }
-
     this.logUserOut = this.logUserOut.bind(this)
     this.responseGoogle = this.responseGoogle.bind(this)
+    this.responseFacebook = this.responseFacebook.bind(this)
   }
 
   onFailed(resp) {
@@ -41,12 +41,24 @@ export default class SocialLogin extends Component {
     this.setState({ userData: null })
   }
 
-  // <TwitterLogin loginUrl="http://localhost:4000/api/v1/auth/twitter"
-  // onFailure={this.onFailed} onSuccess={this.onSuccess}
-  // requestTokenUrl="http://localhost:4000/api/v1/auth/twitter/reverse" />
+  async responseFacebook(response) {
 
-  responseFacebook(res) {
-    console.log('FBRESPO', res)
+    let userSchema = {
+      name: response.name,
+      firstName: response.name,
+      lastName: response.name,
+      email: response.email,
+      avatar: response.picture.data.url,
+      socialID: response.userID,
+      exp: response.expiresIn
+    }
+
+    // _Save users information to DB
+    const res = await ENDPOINTS.registerUser(userSchema)
+    console.log(res);
+    // SET in localStorage and State
+    localStorage.setItem('social', JSON.stringify(userSchema))
+    this.setState({ userData: userSchema })
   }
 
   componentClicked(res) {
@@ -57,22 +69,23 @@ export default class SocialLogin extends Component {
 
   async responseGoogle(response) {
 
-    // _Save users information to DB
-    const res = await ENDPOINTS.registerUser(response)
-
     let userSchema;
 
-    if (res) {
+    if (response) {
       userSchema = {
         name: response.profileObj.name,
         firstName: response.profileObj.givenName,
         lastName: response.profileObj.familyName,
+        email: response.profileObj.email,
         avatar: response.profileObj.imageUrl,
-        id: response.googleId,
+        socialID: response.googleId,
         exp: response.expires_at
       }
     }
-
+    console.warn(userSchema);
+    // _Save users information to DB
+    const res = await ENDPOINTS.registerUser(userSchema)
+    console.log(res);
     // SET in localStorage and State
     localStorage.setItem('social', JSON.stringify(userSchema))
     this.setState({ userData: userSchema })

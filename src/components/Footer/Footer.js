@@ -3,8 +3,8 @@ import './Footer.scss'
 
 export default function Footer() {
   return (
-    <div className="footer ">
+    <footer className="footer ">
       <span> Annah Isenberg 2019</span>
-    </div>
+    </footer>
   )
 }

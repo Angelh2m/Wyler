@@ -34,7 +34,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 // Create pages for each markdown file.
                 result.data.allMarkdownRemark.edges.forEach(({ node }) => {
                     actions.createPage({
-                        path: `${node.frontmatter.category}/${node.frontmatter.slug}`,
+                        path: `${node.frontmatter.category.toLowerCase()}/${node.frontmatter.slug.toLowerCase()}`,
                         component: path.resolve(`src/templates/BlogPost.js`),
                         context: {
                             id: node.frontmatter.slug

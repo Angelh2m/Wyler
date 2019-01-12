@@ -41,7 +41,7 @@ class Header extends Component {
     return (
       <div className="c_header">
 
-        <nav>
+        <header role="banner">
           {/* {this.searchTerm.length > 1 && (
             <Redirect to={`/${this.searchTerm}`} />
           )} */}
@@ -59,12 +59,12 @@ class Header extends Component {
               <i className="icon-pinterest2"> </i>
             </div>
           </div>
-          <div className="c_header__bottom">
-            <h1>
+          <nav className="c_header__bottom" role="navigation">
+            <strong>
               <Link to="/" className="logo">
                 Living With Annah
               </Link>
-            </h1>
+            </strong>
             <div>
               <ul>
                 <li>
@@ -94,8 +94,8 @@ class Header extends Component {
                 </div> */}
               </ul>
             </div>
-          </div>
-        </nav>
+          </nav>
+        </header>
         {this.state.isActive && (
           <div onClick={this.toggle} className="c_header__background">
             BACKGROUND

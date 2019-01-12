@@ -1,6 +1,8 @@
 import { API_ENDPOINT } from '../config/config'
 import { handleStorage } from '../util/localStorage'
 
+// import axios from 'axios';
+
 const getPosts = (num, category) => {
   let cat = category ? category : ' '
 
@@ -82,11 +84,13 @@ const login = user => {
 }
 
 const registerUser = user => {
-  return fetch(`${API_ENDPOINT}/register`, {
-    method: 'POST',
+
+  return fetch(`${API_ENDPOINT}/api/register`, {
+    method: 'post',
     body: JSON.stringify(user),
     headers: {
-      'Content-Type': 'application/json',
+      "Access-Control-Allow-Credentials": "true",
+      "Content-Type": "application/json"
     },
   })
     .then(response => response.json())
@@ -95,11 +99,12 @@ const registerUser = user => {
 }
 
 const makeComment = commentPayload => {
-  return fetch(`${API_ENDPOINT}/comments/user`, {
+  return fetch(`${API_ENDPOINT}/api/comments`, {
     method: 'POST',
     body: JSON.stringify(commentPayload),
     headers: {
-      'Content-Type': 'application/json',
+      "Access-Control-Allow-Credentials": "true",
+      "Content-Type": "application/json"
     },
   })
     .then(response => response.json())
