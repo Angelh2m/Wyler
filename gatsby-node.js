@@ -33,6 +33,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 if (result.errors) { reject(result.errors) }
                 // Create pages for each markdown file.
                 result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+                    console.log(`${node.frontmatter.category.toLowerCase()}/${node.frontmatter.slug.toLowerCase()}`);
                     actions.createPage({
                         path: `${node.frontmatter.category.toLowerCase()}/${node.frontmatter.slug.toLowerCase()}`,
                         component: path.resolve(`src/templates/BlogPost.js`),
@@ -44,7 +45,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
                 result.data.allMarkdownRemark.edges.forEach(({ node }) => {
                     actions.createPage({
-                        path: `${node.frontmatter.category}`,
+                        path: `${node.frontmatter.category.toLowerCase()}`,
                         component: path.resolve(`src/templates/Category.js`),
                         context: {
                             id: node.frontmatter.category,

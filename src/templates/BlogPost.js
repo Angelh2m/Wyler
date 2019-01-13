@@ -6,7 +6,7 @@ import Img from 'gatsby-image'
 import { Link } from 'gatsby'
 import { dateFormat } from '../util/dateFormat'
 import Comments from '../components/Comments/Comments';
-
+import './BlogPost.scss'
 
 export default class BlogPost extends Component {
 
@@ -23,7 +23,11 @@ export default class BlogPost extends Component {
         <SEO
           title={post.frontmatter.title}
           description={post.frontmatter.title}
+          images={post.frontmatter.featuredImage}
           keywords={[`${post.frontmatter.title}`]}
+          postURL={`${post.frontmatter.category}/${post.frontmatter.slug}`}
+          postDate={post.frontmatter.date}
+          type="Blog"
         />
 
         <article className="container--block " role="main">
@@ -70,6 +74,7 @@ export const articleQuery = graphql`
             title
             category
             date
+            slug
 
             featuredImage {
               childImageSharp {

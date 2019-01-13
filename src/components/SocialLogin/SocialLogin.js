@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
+
 import { GoogleLogin } from 'react-google-login';
-// import TwitterLogin from 'react-twitter-auth'
-import googleIcon from '../../images/icons/google.png'
-// import FacebookLogin from 'react-facebook-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
-import './Sociallogin.scss'
+
+import googleIcon from '../../images/icons/google.png'
 import { ENDPOINTS } from '../../services/apiCalls'
-// import jwtDecode from 'jwt-decode';
+import './Sociallogin.scss'
+
 
 export default class SocialLogin extends Component {
   constructor(props) {
@@ -17,22 +17,11 @@ export default class SocialLogin extends Component {
     this.responseFacebook = this.responseFacebook.bind(this)
   }
 
-  onFailed(resp) {
-    console.log(resp)
-  }
-
-  onSuccess(resp) {
-    console.log(resp)
-  }
 
   componentDidMount() {
     try {
-      const userData = JSON.parse(localStorage.getItem('social'));
-      this.setState({ userData: userData })
-
-    } catch (error) {
-
-    }
+      this.setState({ userData: JSON.parse(localStorage.getItem('social')) })
+    } catch (error) { }
   }
 
 
@@ -41,24 +30,28 @@ export default class SocialLogin extends Component {
     this.setState({ userData: null })
   }
 
-  async responseFacebook(response) {
+  responseFacebook(response) {
+    if (!response.error) { return }
+    return async (response) => {
 
-    let userSchema = {
-      name: response.name,
-      firstName: response.name,
-      lastName: response.name,
-      email: response.email,
-      avatar: response.picture.data.url,
-      socialID: response.userID,
-      exp: response.expiresIn
+      let userSchema = {
+        name: response.name,
+        firstName: response.name,
+        lastName: response.name,
+        email: response.email,
+        avatar: response.picture.data.url,
+        socialID: response.userID,
+        exp: response.expiresIn
+      }
+
+      // _Save users information to DB
+      const res = await ENDPOINTS.registerUser(userSchema)
+      console.log(res);
+      // SET in localStorage and State
+      localStorage.setItem('social', JSON.stringify(userSchema))
+      this.setState({ userData: userSchema })
+
     }
-
-    // _Save users information to DB
-    const res = await ENDPOINTS.registerUser(userSchema)
-    console.log(res);
-    // SET in localStorage and State
-    localStorage.setItem('social', JSON.stringify(userSchema))
-    this.setState({ userData: userSchema })
   }
 
   componentClicked(res) {
@@ -67,28 +60,33 @@ export default class SocialLogin extends Component {
 
 
 
-  async responseGoogle(response) {
+  responseGoogle(response) {
+    console.log("response", response);
 
-    let userSchema;
+    return async (response) => {
+      let userSchema;
 
-    if (response) {
-      userSchema = {
-        name: response.profileObj.name,
-        firstName: response.profileObj.givenName,
-        lastName: response.profileObj.familyName,
-        email: response.profileObj.email,
-        avatar: response.profileObj.imageUrl,
-        socialID: response.googleId,
-        exp: response.expires_at
+      if (!response.error) { return }
+
+      if (response && !response.error) {
+        userSchema = {
+          name: response.profileObj.name,
+          firstName: response.profileObj.givenName,
+          lastName: response.profileObj.familyName,
+          email: response.profileObj.email,
+          avatar: response.profileObj.imageUrl,
+          socialID: response.googleId,
+          exp: response.expires_at
+        }
       }
+      console.warn(userSchema);
+      // _Save users information to DB
+      const res = await ENDPOINTS.registerUser(userSchema)
+      console.log(res);
+      // SET in localStorage and State
+      localStorage.setItem('social', JSON.stringify(userSchema))
+      this.setState({ userData: userSchema })
     }
-    console.warn(userSchema);
-    // _Save users information to DB
-    const res = await ENDPOINTS.registerUser(userSchema)
-    console.log(res);
-    // SET in localStorage and State
-    localStorage.setItem('social', JSON.stringify(userSchema))
-    this.setState({ userData: userSchema })
   }
 
   render() {
@@ -152,8 +150,6 @@ export default class SocialLogin extends Component {
             </div>
 
           </div>
-
-
 
         )}
 

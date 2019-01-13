@@ -52,11 +52,26 @@ class Header extends Component {
               <Link to="#"> Contact </Link> */}
             </div>
             <div>
-              <i className="icon-instagram"> </i>
-              <i className="icon-facebook"> </i>
-              <i className="icon-twitter"> </i>
-              <i className="icon-youtube"> </i>
-              <i className="icon-pinterest2"> </i>
+              <a href="https://www.facebook.com/Living-with-Annah-292792198088448/" rel="noopener norefferer" target="blank">
+                <i className="icon-facebook"> </i>
+              </a>
+              <a href="https://www.instagram.com/livingwithannah/" rel="noopener norefferer" target="blank">
+                <i className="icon-instagram"></i>
+              </a>
+              <a href="https://twitter.com/LivingWithAnnah" rel="noopener norefferer" target="blank">
+                <i className="icon-twitter"> </i>
+              </a>
+              <a href="https://www.youtube.com/channel/UCy0ejwjwFV-P8r1it_jJHEw" rel="noopener norefferer" target="blank">
+                <i className="icon-youtube"> </i>
+              </a>
+              <a href="https://www.pinterest.com/livingwithannah/" rel="noopener norefferer" target="blank">
+                <i className="icon-pinterest2"> </i>
+              </a>
+
+
+
+
+
             </div>
           </div>
           <nav className="c_header__bottom" role="navigation">

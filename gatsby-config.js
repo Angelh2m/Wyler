@@ -34,7 +34,7 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 900,
+              maxWidth: 950,
             },
           },
           `gatsby-remark-copy-linked-files`,
@@ -48,7 +48,6 @@ module.exports = {
         trackingId: "UA-131724438-1",
       },
     },
-
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -64,6 +63,7 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',
+    `gatsby-plugin-remove-trailing-slashes`,
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {

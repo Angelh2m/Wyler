@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import FormFields from '../FormFields/FormFields'
 import './Comments.scss'
 import SocialLogin from '../SocialLogin/SocialLogin'
 import { ENDPOINTS } from '../../services/apiCalls'
@@ -33,6 +32,11 @@ export default class Comments extends Component {
     let userData = JSON.parse(localStorage.getItem('social'));
 
 
+    if (!userData || !this.state.comment) {
+      this.setState({ message: "You must be logged in to post a comment" })
+      return
+    }
+
     let payload;
     try {
       payload = {
@@ -48,16 +52,13 @@ export default class Comments extends Component {
 
     } catch (error) { console.log(error) }
 
-    if (!payload.socialID || !payload.comment) {
-      return
-    }
+
 
     const response = await ENDPOINTS.makeComment(payload)
 
     if (response) {
       console.log(response);
-
-      this.setState({ message: 'Comment posted!' })
+      this.setState({ message: 'Comment has been sent! It will show in this post soon ' })
     }
 
   }

@@ -1,7 +1,7 @@
 ---
 title: Here We Go.... Starting A New Blog
 date: '2018-12-03T16:28:44+00:00'
-slug: here-we-go--starting-a-new-blog
+slug: here-we-go-starting-a-new-blog
 category: lifestyle
 featuredImage: "./new-blog.jpeg"
 excerpt: "Hi everyone! 😋 My name is Annah, and this is my very first blog post. I am SO excited to finally start on this blog as I’ve been wanting to start a blog for quite awhile now. I’m thinking I will mainly blog about recipes I’ve tried, decorating tips, books, and anything else that pops into my mind!"

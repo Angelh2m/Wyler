@@ -729,6 +729,10 @@ a {
   text-decoration: none;
 }
 
+button {
+  -webkit-appearance: none;
+}
+
 .link {
   cursor: pointer;
   color: #fb6e59;
@@ -759,6 +763,13 @@ h2 {
   margin-bottom: 3rem;
 }
 
+ol {
+  margin-left: 1rem;
+
+  a {
+    display: block;
+  }
+}
 
 
 p {
@@ -773,11 +784,15 @@ p {
   letter-spacing: .01rem;
   font-weight: 400;
   font-style: normal;
-  font-size: 1.2rem;
-  ;
+  font-size: 1rem;
   line-height: 1.9;
   letter-spacing: -.003em;
-  color: #292929;
+  color: black;
+
+
+  a {
+    color: #008eff
+  }
 }
 
 @include tablet {

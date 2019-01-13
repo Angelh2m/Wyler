@@ -3,13 +3,64 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 
-function SEO({ description, lang, meta, keywords, title }) {
+function SEO({ description, images, postURL, postDate, type, lang, meta, keywords }) {
   return (
     <StaticQuery
       query={detailsQuery}
       render={data => {
-        const metaDescription =
-          description || data.site.siteMetadata.description
+
+        const metaDescription = description || data.site.siteMetadata.description;
+        const title = data.site.siteMetadata.title;
+        const image = images ? images.childImageSharp.fluid.src : "";
+
+
+        const schemaOrgJSONLD = [
+          {
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            url: "www.livingWithAnnah.com",
+            name: title,
+
+          }
+        ];
+
+        if (type === "Blog") {
+          schemaOrgJSONLD.push(
+            {
+              "@context": "http://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  item: {
+                    "@id": postURL,
+                    name: title,
+                    image
+                  }
+                }
+              ]
+            },
+            {
+              "@context": "http://schema.org",
+              "@type": "BlogPosting",
+              url: "https://www.livingwithannah.com/",
+              author: "Annah Isenberg",
+              name: title,
+              alternateName: title,
+              headline: title,
+              datePublished: postDate,
+              dateModified: postDate,
+              publisher: "Living With Annah",
+              image: {
+                "@type": "ImageObject",
+                url: `https://www.livingwithannah.com${image}`
+              },
+              description
+            }
+          );
+        }
+
         return (
           <Helmet
             htmlAttributes={{
@@ -73,7 +124,14 @@ function SEO({ description, lang, meta, keywords, title }) {
                   : []
               )
               .concat(meta)}
-          />
+          >
+            {/* Schema.org tags */}
+
+
+            <script type="application/ld+json">
+              {JSON.stringify(schemaOrgJSONLD)}
+            </script>
+          </Helmet>
         )
       }}
     />
