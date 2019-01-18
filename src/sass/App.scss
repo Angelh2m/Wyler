@@ -760,7 +760,7 @@ h2 {
 }
 
 .gatsby-image-wrapper {
-  margin-bottom: 3rem;
+  // margin-bottom: 3rem;
 }
 
 ol {
@@ -792,6 +792,12 @@ p {
 
   a {
     color: #008eff
+  }
+}
+
+.container--block {
+  h2 {
+    margin-top: 3rem;
   }
 }
 

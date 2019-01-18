@@ -22,7 +22,7 @@ export default function FrontPage() {
 
                     featuredImage {
                       childImageSharp {
-                        fluid(maxWidth: 800 ) {
+                        fluid(maxWidth: 700 ) {
                           # Choose either the fragment including a small base64ed image, a traced placeholder SVG, or one without.
                           ...GatsbyImageSharpFluid
                         }

@@ -30,28 +30,26 @@ export default class SocialLogin extends Component {
     this.setState({ userData: null })
   }
 
-  responseFacebook(response) {
-    if (!response.error) { return }
-    return async (response) => {
-
-      let userSchema = {
-        name: response.name,
-        firstName: response.name,
-        lastName: response.name,
-        email: response.email,
-        avatar: response.picture.data.url,
-        socialID: response.userID,
-        exp: response.expiresIn
-      }
-
-      // _Save users information to DB
-      const res = await ENDPOINTS.registerUser(userSchema)
-      console.log(res);
-      // SET in localStorage and State
-      localStorage.setItem('social', JSON.stringify(userSchema))
-      this.setState({ userData: userSchema })
-
+  async responseFacebook(response) {
+    if (response.error) { return }
+    let userSchema = {
+      name: response.name,
+      firstName: response.name,
+      lastName: response.name,
+      email: response.email,
+      avatar: response.picture.data.url,
+      socialID: response.userID,
+      exp: response.expiresIn
     }
+
+    // _Save users information to DB
+    const res = await ENDPOINTS.registerUser(userSchema)
+    console.log(res);
+    // SET in localStorage and State
+    localStorage.setItem('social', JSON.stringify(userSchema))
+    this.setState({ userData: userSchema })
+
+
   }
 
   componentClicked(res) {
@@ -60,33 +58,29 @@ export default class SocialLogin extends Component {
 
 
 
-  responseGoogle(response) {
-    console.log("response", response);
+  async responseGoogle(response) {
+    let userSchema;
+    if (response.error) { return }
 
-    return async (response) => {
-      let userSchema;
-
-      if (!response.error) { return }
-
-      if (response && !response.error) {
-        userSchema = {
-          name: response.profileObj.name,
-          firstName: response.profileObj.givenName,
-          lastName: response.profileObj.familyName,
-          email: response.profileObj.email,
-          avatar: response.profileObj.imageUrl,
-          socialID: response.googleId,
-          exp: response.expires_at
-        }
+    if (response && !response.error) {
+      userSchema = {
+        name: response.profileObj.name,
+        firstName: response.profileObj.givenName,
+        lastName: response.profileObj.familyName,
+        email: response.profileObj.email,
+        avatar: response.profileObj.imageUrl,
+        socialID: response.googleId,
+        exp: response.expires_at
       }
-      console.warn(userSchema);
-      // _Save users information to DB
-      const res = await ENDPOINTS.registerUser(userSchema)
-      console.log(res);
-      // SET in localStorage and State
-      localStorage.setItem('social', JSON.stringify(userSchema))
-      this.setState({ userData: userSchema })
     }
+    console.warn(userSchema);
+    // _Save users information to DB
+    const res = await ENDPOINTS.registerUser(userSchema)
+    console.log(res);
+    // SET in localStorage and State
+    localStorage.setItem('social', JSON.stringify(userSchema))
+    this.setState({ userData: userSchema })
+
   }
 
   render() {

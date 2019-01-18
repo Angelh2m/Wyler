@@ -21,7 +21,7 @@ export default function Category(props) {
         keywords={[`gatsby`, `application`, `react`]}
       />
 
-      <h2>Articles in: {props.pathContext.id}</h2>
+      <h2>Articles in: {props.pageContext.id}</h2>
       <div>
         <article className="container--flex posts">
 

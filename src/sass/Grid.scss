@@ -67,6 +67,8 @@ $max-witdh: 68rem;
         position: relative;
     }
 
+
+
     .col-1 {
         flex: 1.5;
         position: relative;
@@ -76,4 +78,29 @@ $max-witdh: 68rem;
         flex: 1;
         padding-left: 2rem;
     }
+}
+
+
+.container--recipe {
+    display: flex;
+    flex-direction: column-reverse;
+
+    @include tablet {
+        flex-direction: row;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    ul {
+        padding: 0;
+        padding-left: 1rem;
+        margin-top: 1rem;
+    }
+
+    a {
+        color: #008eff;
+    }
+
 }

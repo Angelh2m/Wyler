@@ -22,12 +22,14 @@ export default class BlogPost extends Component {
       <Layout>
         <SEO
           title={post.frontmatter.title}
+          category={post.frontmatter.category}
           description={post.frontmatter.title}
           images={post.frontmatter.featuredImage}
           keywords={[`${post.frontmatter.title}`]}
           postURL={`${post.frontmatter.category}/${post.frontmatter.slug}`}
           postDate={post.frontmatter.date}
-          type="Blog"
+          recipe={post.frontmatter.recipe}
+          type={post.frontmatter.category}
         />
 
         <article className="container--block " role="main">
@@ -84,6 +86,19 @@ export const articleQuery = graphql`
 
                 }
               }
+            }
+
+            recipe{
+              ingredients
+              instructions
+              cookTime
+              totalTime
+              recipeYield
+              recipeCategory
+              cookingMethod
+              recipeCuisine
+              keywords
+              description
             }
             
           }

@@ -18,24 +18,25 @@
     &__one {
 
 
-        // top: 5%;
-        // background-color: white;
-        // padding: 1rem 1rem;
-        // overflow: hidden;
-        // margin: 0 auto;
-        // right: 0;
-        // transform: translateY(-50%);
-
         top: 50%;
         background-color: white;
-        padding: 2rem 2rem;
+        padding: 2rem 0rem;
         width: 92%;
         overflow: hidden;
         margin: 0 auto;
         right: 0;
-        -webkit-transform: translateY(-50%);
-        transform: translateY(-50%);
         font-size: 0rem;
+        margin-bottom: 2rem;
+
+
+
+        @include tablet {
+
+            padding: 2rem 2rem;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            font-size: 0rem;
+        }
 
         @include desktop {
             top: 0;

@@ -2,8 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
+import { schemaMarkup } from './schemaMarkup';
 
-function SEO({ description, images, postURL, postDate, type, lang, meta, keywords }) {
+function SEO({ description, images, postURL, postDate, category, lang, meta, keywords, recipe }) {
   return (
     <StaticQuery
       query={detailsQuery}
@@ -14,52 +15,9 @@ function SEO({ description, images, postURL, postDate, type, lang, meta, keyword
         const image = images ? images.childImageSharp.fluid.src : "";
 
 
-        const schemaOrgJSONLD = [
-          {
-            "@context": "http://schema.org",
-            "@type": "WebSite",
-            url: "www.livingWithAnnah.com",
-            name: title,
+        let schemaOrgJSONLD = schemaMarkup(title, metaDescription, image, postURL, postDate, category, lang, meta, keywords, recipe);
+        console.log(schemaOrgJSONLD);
 
-          }
-        ];
-
-        if (type === "Blog") {
-          schemaOrgJSONLD.push(
-            {
-              "@context": "http://schema.org",
-              "@type": "BreadcrumbList",
-              itemListElement: [
-                {
-                  "@type": "ListItem",
-                  position: 1,
-                  item: {
-                    "@id": postURL,
-                    name: title,
-                    image
-                  }
-                }
-              ]
-            },
-            {
-              "@context": "http://schema.org",
-              "@type": "BlogPosting",
-              url: "https://www.livingwithannah.com/",
-              author: "Annah Isenberg",
-              name: title,
-              alternateName: title,
-              headline: title,
-              datePublished: postDate,
-              dateModified: postDate,
-              publisher: "Living With Annah",
-              image: {
-                "@type": "ImageObject",
-                url: `https://www.livingwithannah.com${image}`
-              },
-              description
-            }
-          );
-        }
 
         return (
           <Helmet
