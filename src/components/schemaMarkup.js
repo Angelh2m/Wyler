@@ -37,32 +37,37 @@ export const schemaMarkup = (title, description, image, postURL, postDate, categ
         },
     ];
 
+
     if (category === "recipes" || category === "Recipes") {
-        seoSchema.push(
-            {
-                "@context": "http://schema.org",
-                "@type": "Recipe",
-                "name": title,
-                "description": `<p>${recipe.description}</p>`,
-                "author": {
-                    "@type": "Person",
-                    "name": "Annah Isenberg"
-                },
-                "image": [`https://www.livingwithannah.com${image}`],
-                "url": `https://www.livingwithannah.com/${postURL}`,
-                "recipeIngredient": [recipe.ingredients],
-                "recipeInstructions": [recipe.instructions],
-                "prepTime": recipe.prepTime,
-                "cookTime": recipe.cookTime,
-                "totalTime": recipe.totalTime,
-                "recipeYield": recipe.recipeYield,
-                "recipeCategory": recipe.recipeCategory,
-                "cookingMethod": recipe.cookingMethod,
-                "recipeCuisine": recipe.recipeCuisine,
-                "datePublished": postDate,
-                "keywords": recipe.keywords,
-            }
-        );
+
+        try {
+            seoSchema.push(
+                {
+                    "@context": "http://schema.org",
+                    "@type": "Recipe",
+                    "name": title,
+                    "description": `${recipe.description}`,
+                    "author": {
+                        "@type": "Person",
+                        "name": "Annah Isenberg"
+                    },
+                    "image": [`https://www.livingwithannah.com${image}`],
+                    "url": `https://www.livingwithannah.com/${postURL}`,
+                    "recipeIngredient": [recipe.ingredients],
+                    "recipeInstructions": [recipe.instructions],
+                    "prepTime": recipe.prepTime,
+                    "cookTime": recipe.cookTime,
+                    "totalTime": recipe.totalTime,
+                    "recipeYield": recipe.recipeYield,
+                    "recipeCategory": recipe.recipeCategory,
+                    "cookingMethod": recipe.cookingMethod,
+                    "recipeCuisine": recipe.recipeCuisine,
+                    "datePublished": postDate,
+                    "keywords": recipe.keywords,
+                }
+            );
+        } catch (error) { return error }
+
     }
     console.log(seoSchema);
 

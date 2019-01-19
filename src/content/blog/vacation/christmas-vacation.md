@@ -1,8 +1,8 @@
 ---
-title: Christmas Vacation
-date: '2018-12-14T16:31:08+00:00'
-slug: christmas-vacation
-category: travel
+title: "Christmas Vacation"
+date: "2018-12-14T16:31:08+00:00"
+slug: "yarn christmas-vacation"
+category: "travel"
 featuredImage: "./living-with-annah-holidays.jpeg"
 ---
 

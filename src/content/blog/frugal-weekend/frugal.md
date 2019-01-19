@@ -1,8 +1,8 @@
 ---
-title: My Fun and Frugal Weekend
+title: "My Fun and Frugal Weekend"
 date: '2019-01-13T23:53:58Z'
-slug: my-fun-and-frugal-weekend
-category: lifestyle
+slug: "my-fun-and-frugal-weekend"
+category: "lifestyle"
 featuredImage: './smash-burger-and-rosemary-fries-dallas.jpg'
 ---
 

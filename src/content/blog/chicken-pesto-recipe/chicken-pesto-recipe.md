@@ -74,9 +74,10 @@ Ok, so since I don’t have anything else to talk about, here’s that recipe:
    <li>½ tsp crushed red pepper (optional)</li>
 </ul>
 </div>
-<div class="col-3" > 
+<div class="col-3" markdown="1" > 
 
 ![Roasted chicken with pesto and veggetables](./Recipe-Baked-Pesto-Chicken-Veggies.jpg)
+
  </div>
 
 </div>

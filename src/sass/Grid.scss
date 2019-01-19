@@ -76,7 +76,10 @@ $max-witdh: 68rem;
 
     aside {
         flex: 1;
-        padding-left: 2rem;
+
+        @include tablet {
+            padding-left: 2rem;
+        }
     }
 }
 

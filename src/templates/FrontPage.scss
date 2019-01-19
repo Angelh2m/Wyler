@@ -6,10 +6,7 @@
 .posts__content {
     background-color: white;
     margin: auto;
-
     bottom: 0;
-    width: 84%;
-
     margin: 0 auto;
     left: 0;
     right: 0;
@@ -18,6 +15,7 @@
     @include tablet {
         position: absolute;
         padding: 2rem 2rem;
+        width: 84%;
     }
 
     @include desktop {

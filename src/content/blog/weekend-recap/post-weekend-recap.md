@@ -1,8 +1,8 @@
 ---
-title: Weekend Recap & Walmart Grocery Review & Monday Night Dinner
+title: "Weekend Recap & Walmart Grocery Review & Monday Night Dinner"
 date: '2018-12-06T16:32:24+00:00'
-slug: weekend-recap-walmart-grocery-review-monday-night-dinner
-category: lifestyle
+slug: "weekend-recap-walmart-grocery-review-monday-night-dinner"
+category: "lifestyle"
 featuredImage: "./weekend.jpeg"
 excerpt: "Hi everyone!
 I hope you all had a great weekend. I sure did! I just love the weekends (but who doesn’t?). I honestly didn’t do much this weekend, though, just relaxed and worked on some web development projects. I was actually wanting to go to this awesome looking flea market in Canton, TX this weekend called the First Monday Trade Days ..."
