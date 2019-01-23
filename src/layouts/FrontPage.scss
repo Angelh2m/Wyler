@@ -10,12 +10,14 @@
     margin: 0 auto;
     left: 0;
     right: 0;
-    transform: translateY(60%);
+    margin-top: 1rem;
+
 
     @include tablet {
         position: absolute;
         padding: 2rem 2rem;
         width: 84%;
+        transform: translateY(60%);
     }
 
     @include desktop {

@@ -1,25 +1,25 @@
 import React from 'react'
-import FrontPage from '../templates/FrontPage'
-import Layout from '../layouts/layout'
+import FrontPageES from '../templates/FrontPageES'
+import LayoutES from '../layouts/LayoutES'
 import SEO from '../components/seo'
 import Sidebar from '../components/Sidebar/Sidebar'
 
-const App = () => (
-  <Layout>
+const AppES = () => (
+  <LayoutES>
     {/* <Navigation /> */}
     <SEO title="Wellcome!" keywords={[`gatsby`, `application`, `react`]} />
 
     <div className="container--flex">
       <div className="container--flex posts">
         <div className="col-7">
-          <FrontPage />
+          <FrontPageES />
         </div>
         <aside className="col-2-half">
           <Sidebar />
         </aside>
       </div>
     </div>
-  </Layout>
+  </LayoutES>
 )
 
-export default App
+export default AppES

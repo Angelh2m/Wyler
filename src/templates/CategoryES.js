@@ -6,22 +6,22 @@ import './Category.scss'
 import CategoryLayout from '../layouts/CategoryLayout';
 
 export default function Category(props) {
-  const posts = props.data.allMarkdownRemark.edges
-  // try { window.scrollTo(0, 0) } catch (error) { console.log(err)}
-  return (
-    <Layout>
-      <SEO
-        title={props.pageContext.id}
-        description={'Description'}
-        keywords={[`gatsby`, `application`, `react`]}
-      />
+    const posts = props.data.allMarkdownRemark.edges
+    // try { window.scrollTo(0, 0) } catch (error) { console.log(err)}
+    return (
+        <Layout>
+            <SEO
+                title={props.pageContext.id}
+                description={'Description'}
+                keywords={[`gatsby`, `application`, `react`]}
+            />
 
-      <h2>Articles in: {props.pageContext.id}</h2>
-      <div>
-        <CategoryLayout posts={posts} />
-      </div>
-    </Layout>
-  )
+            <h2>Articles in: {props.pageContext.id}</h2>
+            <div>
+                <CategoryLayout posts={posts} language={"es"} />
+            </div>
+        </Layout>
+    )
 }
 
 export const queryCategory = graphql`

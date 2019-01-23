@@ -22,7 +22,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 allMarkdownRemark{
                     edges {
                         node { 
-                            frontmatter{category slug}
+                            frontmatter{category slug language}
                             html
                         }
                     }
@@ -33,24 +33,54 @@ exports.createPages = async ({ graphql, actions }) => {
                 if (result.errors) { reject(result.errors) }
                 // Create pages for each markdown file.
                 result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+
                     console.log(`${node.frontmatter.category.toLowerCase()}/${node.frontmatter.slug.toLowerCase()}`);
-                    actions.createPage({
-                        path: `${node.frontmatter.category.toLowerCase()}/${node.frontmatter.slug.toLowerCase()}`,
-                        component: path.resolve(`src/templates/BlogPost.js`),
-                        context: {
-                            id: node.frontmatter.slug
-                        },
-                    })
+                    if (node.frontmatter.language !== "ES") {
+                        actions.createPage({
+                            path: `${node.frontmatter.category.toLowerCase()}/${node.frontmatter.slug.toLowerCase()}`,
+                            component: path.resolve(`src/templates/BlogPost.js`),
+                            context: {
+                                id: node.frontmatter.slug
+                            },
+                        })
+                    }
+
+
+                    if (node.frontmatter.language === "ES") {
+                        actions.createPage({
+                            path: `es/${node.frontmatter.category.toLowerCase()}/${node.frontmatter.slug.toLowerCase()}`,
+                            component: path.resolve(`src/templates/BlogPost_ES.js`),
+                            context: {
+                                id: node.frontmatter.slug
+                            },
+                        })
+                    }
+
                 })
 
                 result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-                    actions.createPage({
-                        path: `${node.frontmatter.category.toLowerCase()}`,
-                        component: path.resolve(`src/templates/Category.js`),
-                        context: {
-                            id: node.frontmatter.category,
-                        },
-                    })
+
+                    if (node.frontmatter.language !== "ES") {
+                        actions.createPage({
+                            path: `${node.frontmatter.category.toLowerCase()}`,
+                            component: path.resolve(`src/templates/Category.js`),
+                            context: {
+                                id: node.frontmatter.category,
+                            },
+                        })
+                    }
+
+
+                    if (node.frontmatter.language === "ES") {
+                        actions.createPage({
+                            path: `es/${node.frontmatter.category.toLowerCase()}`,
+                            component: path.resolve(`src/templates/CategoryES.js`),
+                            context: {
+                                id: node.frontmatter.category
+                            },
+                        })
+                    }
+
                 })
 
             })

@@ -2,24 +2,20 @@ import React from 'react'
 import { Link } from '@reach/router'
 import { shareThisPost } from '../../util/shareThis'
 import './SocialMedia.scss'
+import { dateFormat } from '../../util/dateFormat';
 
 export default function SocialMedia(props) {
+  let url = props.language ? `es/` : "";
   const { post } = props
-  var options = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }
-  var today = new Date(post.date)
+
   return (
     <div>
       <div className="posts__side__meta">
         <span className="text__date">
-          {today.toLocaleDateString('en-US', options)}
+          {dateFormat(post.date, url)}
         </span>
         {post.category && (
-          <Link to={`/${post.category}`}>
+          <Link to={`/${url}${post.category}`}>
             <span className="text__category--black ">
               {post.category.replace(/-/g, ' ')}
             </span>

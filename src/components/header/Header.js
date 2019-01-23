@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'gatsby'
 import './Header.scss'
-// import classNames from 'classNames';
-
 
 class Header extends Component {
   constructor(props) {
@@ -10,14 +8,24 @@ class Header extends Component {
     this.state = {
       isActive: false,
       search: '',
+      urlPath: ''
     }
     this.toggle = this.toggle.bind(this)
     this.search = this.search.bind(this)
 
     this.searchTerm = React.createRef()
+
+    // const x = window.location.pathname.split('/')[1];
+    // console.log(this.state.urlPath);
+
+    // console.log("==> ");
+    // console.warn(x[1]);
+
   }
 
-  componentDidUpdate() { }
+  componentDidMount() {
+    this.setState({ urlPath: this.props.language })
+  }
 
   toggle() {
     this.setState({ isActive: !this.state.isActive })
@@ -30,6 +38,74 @@ class Header extends Component {
     }
   }
 
+  navigationES() {
+    return (
+      <nav className="c_header__bottom" role="navigation">
+        <strong>
+          <Link to="/es" className="logo">
+            Living With Annah
+              </Link>
+        </strong>
+        <div>
+          <ul>
+            {/* <li>
+              <Link to="es/lifestyle">Lifestyle</Link>
+            </li> */}
+            <li>
+              <Link hrefLang="es" to="es/blog">Blog</Link>
+            </li>
+            <li>
+              <Link hrefLang="es" to="es">Inicio</Link>
+            </li>
+
+            {/* <div className="c_header__burger">
+                  {!this.state.isActive && (
+                    <i className="icon-burger--button" onClick={this.toggle} />
+                  )}
+                  {this.state.isActive && (
+                    <i className="icon-close--button" onClick={this.toggle} />
+                  )}
+                </div> */}
+          </ul>
+        </div>
+      </nav>
+    )
+  }
+
+  navigation() {
+    return (
+      <nav className="c_header__bottom" role="navigation">
+        <strong>
+          <Link to="/" className="logo">
+            Living With Annah
+              </Link>
+        </strong>
+        <div>
+          <ul>
+            <li>
+              <Link to="/lifestyle">Lifestyle</Link>
+            </li>
+            <li>
+              <Link to="/travel">Travel</Link>
+            </li>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+
+            {/* <div className="c_header__burger">
+                  {!this.state.isActive && (
+                    <i className="icon-burger--button" onClick={this.toggle} />
+                  )}
+                  {this.state.isActive && (
+                    <i className="icon-close--button" onClick={this.toggle} />
+                  )}
+                </div> */}
+          </ul>
+        </div>
+      </nav>
+    )
+  }
+
   render() {
     // const activeNavigation = (
     //   "c_header__side_navigation",
@@ -40,81 +116,70 @@ class Header extends Component {
 
     return (
       <div className="c_header">
-
         <header role="banner">
           {/* {this.searchTerm.length > 1 && (
             <Redirect to={`/${this.searchTerm}`} />
           )} */}
           <div className="c_header__top">
             <div>
-              {/* <Link to="login"> Login </Link>
-              <Link to="#"> FAQ </Link>
-              <Link to="#"> Contact </Link> */}
+              {!this.state.urlPath && (
+                <Link to="/es">Español</Link>
+              )}
+              {this.state.urlPath === 'es/' && (
+                <Link to="/">English</Link>
+              )}
+
             </div>
             <div>
-              <a href="https://www.facebook.com/Living-with-Annah-292792198088448/" rel="noopener norefferer" target="blank">
+              <a
+                href="https://www.facebook.com/Living-with-Annah-292792198088448/"
+                rel="noopener norefferer"
+                target="blank"
+              >
                 <i className="icon-facebook"> </i>
               </a>
-              <a href="https://www.instagram.com/livingwithannah/" rel="noopener norefferer" target="blank">
-                <i className="icon-instagram"></i>
+              <a
+                href="https://www.instagram.com/livingwithannah/"
+                rel="noopener norefferer"
+                target="blank"
+              >
+                <i className="icon-instagram" />
               </a>
-              <a href="https://twitter.com/LivingWithAnnah" rel="noopener norefferer" target="blank">
+              <a
+                href="https://twitter.com/LivingWithAnnah"
+                rel="noopener norefferer"
+                target="blank"
+              >
                 <i className="icon-twitter"> </i>
               </a>
-              <a href="https://www.youtube.com/channel/UCy0ejwjwFV-P8r1it_jJHEw" rel="noopener norefferer" target="blank">
+              <a
+                href="https://www.youtube.com/channel/UCy0ejwjwFV-P8r1it_jJHEw"
+                rel="noopener norefferer"
+                target="blank"
+              >
                 <i className="icon-youtube"> </i>
               </a>
-              <a href="https://www.pinterest.com/livingwithannah/" rel="noopener norefferer" target="blank">
+              <a
+                href="https://www.pinterest.com/livingwithannah/"
+                rel="noopener norefferer"
+                target="blank"
+              >
                 <i className="icon-pinterest2"> </i>
               </a>
-
-
-
-
-
             </div>
           </div>
-          <nav className="c_header__bottom" role="navigation">
-            <strong>
-              <Link to="/" className="logo">
-                Living With Annah
-              </Link>
-            </strong>
-            <div>
-              <ul>
-                <li>
-                  <Link to="/lifestyle">
-                    Lifestyle
-                </Link>
-                </li>
-                <li>
-                  <Link to="/travel">
-                    Travel
-                </Link>
-                </li>
-                <li>
-                  <Link to="/">
-                    Home
-                </Link>
-                </li>
+
+          {this.state.urlPath === 'es' && (
+            this.navigationES()
+          )}
+          {this.state.urlPath !== 'es' && (
+            this.navigation()
+          )}
 
 
-                {/* <div className="c_header__burger">
-                  {!this.state.isActive && (
-                    <i className="icon-burger--button" onClick={this.toggle} />
-                  )}
-                  {this.state.isActive && (
-                    <i className="icon-close--button" onClick={this.toggle} />
-                  )}
-                </div> */}
-              </ul>
-            </div>
-          </nav>
         </header>
         {this.state.isActive && (
-          <div onClick={this.toggle} className="c_header__background">
-            BACKGROUND
-          </div>
+          <div onClick={this.toggle} className="c_header__background">  BACKGROUND </div>
         )}
 
         {/* <div
@@ -145,8 +210,6 @@ class Header extends Component {
           <li>CLASSIC</li>
           <li>SPRING</li>
         </div> */}
-
-
       </div>
     )
   }

@@ -2,22 +2,41 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
-import { schemaMarkup } from './schemaMarkup';
+import { schemaMarkup } from './schemaMarkup'
 
-function SEO({ description, images, postURL, postDate, category, lang, meta, keywords, recipe }) {
+function SEO({
+  description,
+  images,
+  postURL,
+  postDate,
+  category,
+  lang,
+  meta,
+  keywords,
+  recipe,
+}) {
   return (
     <StaticQuery
       query={detailsQuery}
       render={data => {
+        const metaDescription =
+          description || data.site.siteMetadata.description
+        const title = data.site.siteMetadata.title
+        const image = images ? images.childImageSharp.fluid.src : ''
 
-        const metaDescription = description || data.site.siteMetadata.description;
-        const title = data.site.siteMetadata.title;
-        const image = images ? images.childImageSharp.fluid.src : "";
-
-
-        let schemaOrgJSONLD = schemaMarkup(title, metaDescription, image, postURL, postDate, category, lang, meta, keywords, recipe);
-        console.log(schemaOrgJSONLD);
-
+        let schemaOrgJSONLD = schemaMarkup(
+          title,
+          metaDescription,
+          image,
+          postURL,
+          postDate,
+          category,
+          lang,
+          meta,
+          keywords,
+          recipe
+        )
+        console.log(schemaOrgJSONLD)
 
         return (
           <Helmet
@@ -26,19 +45,18 @@ function SEO({ description, images, postURL, postDate, category, lang, meta, key
             }}
             title={title}
             titleTemplate={`%s | ${data.site.siteMetadata.title}`}
-
             meta={[
               {
-                name: "google-site-verification",
-                content: "bPKW2alhS-mxTsMPaCtDWJMb7_rD1stXp-Ib5h6E1W8"
+                name: 'google-site-verification',
+                content: 'bPKW2alhS-mxTsMPaCtDWJMb7_rD1stXp-Ib5h6E1W8',
               },
               {
-                name: "msvalidate.01",
-                content: "9DF2928A5A20B293151BE340944A9788"
+                name: 'msvalidate.01',
+                content: '9DF2928A5A20B293151BE340944A9788',
               },
               {
-                name: "p:domain_verify",
-                content: "12d638895bd5e0ca6611ea6a5e88dad3"
+                name: 'p:domain_verify',
+                content: '12d638895bd5e0ca6611ea6a5e88dad3',
               },
               {
                 name: `description`,
@@ -76,15 +94,14 @@ function SEO({ description, images, postURL, postDate, category, lang, meta, key
               .concat(
                 keywords.length > 0
                   ? {
-                    name: `keywords`,
-                    content: keywords.join(`, `),
-                  }
+                      name: `keywords`,
+                      content: keywords.join(`, `),
+                    }
                   : []
               )
               .concat(meta)}
           >
             {/* Schema.org tags */}
-
 
             <script type="application/ld+json">
               {JSON.stringify(schemaOrgJSONLD)}

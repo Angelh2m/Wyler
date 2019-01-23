@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 
-import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin } from 'react-google-login'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 
 import googleIcon from '../../images/icons/google.png'
 import { ENDPOINTS } from '../../services/apiCalls'
 import './Sociallogin.scss'
-
 
 export default class SocialLogin extends Component {
   constructor(props) {
@@ -17,13 +16,11 @@ export default class SocialLogin extends Component {
     this.responseFacebook = this.responseFacebook.bind(this)
   }
 
-
   componentDidMount() {
     try {
       this.setState({ userData: JSON.parse(localStorage.getItem('social')) })
-    } catch (error) { }
+    } catch (error) {}
   }
-
 
   logUserOut() {
     localStorage.removeItem('social')
@@ -31,7 +28,9 @@ export default class SocialLogin extends Component {
   }
 
   async responseFacebook(response) {
-    if (response.error) { return }
+    if (response.error) {
+      return
+    }
     let userSchema = {
       name: response.name,
       firstName: response.name,
@@ -39,28 +38,26 @@ export default class SocialLogin extends Component {
       email: response.email,
       avatar: response.picture.data.url,
       socialID: response.userID,
-      exp: response.expiresIn
+      exp: response.expiresIn,
     }
 
     // _Save users information to DB
     const res = await ENDPOINTS.registerUser(userSchema)
-    console.log(res);
+    console.log(res)
     // SET in localStorage and State
     localStorage.setItem('social', JSON.stringify(userSchema))
     this.setState({ userData: userSchema })
-
-
   }
 
   componentClicked(res) {
     console.log(res)
   }
 
-
-
   async responseGoogle(response) {
-    let userSchema;
-    if (response.error) { return }
+    let userSchema
+    if (response.error) {
+      return
+    }
 
     if (response && !response.error) {
       userSchema = {
@@ -70,28 +67,23 @@ export default class SocialLogin extends Component {
         email: response.profileObj.email,
         avatar: response.profileObj.imageUrl,
         socialID: response.googleId,
-        exp: response.expires_at
+        exp: response.expires_at,
       }
     }
-    console.warn(userSchema);
+    console.warn(userSchema)
     // _Save users information to DB
     const res = await ENDPOINTS.registerUser(userSchema)
-    console.log(res);
+    console.log(res)
     // SET in localStorage and State
     localStorage.setItem('social', JSON.stringify(userSchema))
     this.setState({ userData: userSchema })
-
   }
 
   render() {
-
-
     return (
       <div className="social--login">
-
-
-        {/* 
-        * LOGGING BUTTONS
+        {/*
+         * LOGGING BUTTONS
          */}
 
         {!this.state.userData && (
@@ -104,7 +96,10 @@ export default class SocialLogin extends Component {
               callback={this.responseFacebook}
               icon="icon-facebook"
               render={renderProps => (
-                <button className="button--facebook" onClick={renderProps.onClick}>
+                <button
+                  className="button--facebook"
+                  onClick={renderProps.onClick}
+                >
                   {' '}
                   Login With Facebook{' '}
                 </button>
@@ -117,8 +112,15 @@ export default class SocialLogin extends Component {
               onSuccess={this.responseGoogle}
               onFailure={this.responseGoogle}
               render={renderProps => (
-                <button className="button--google" onClick={renderProps.onClick}>
-                  <img className="google__login--image" src={googleIcon} alt="" />
+                <button
+                  className="button--google"
+                  onClick={renderProps.onClick}
+                >
+                  <img
+                    className="google__login--image"
+                    src={googleIcon}
+                    alt=""
+                  />
                   <span className="google__text"> Login with Google</span>
                 </button>
               )}
@@ -126,27 +128,29 @@ export default class SocialLogin extends Component {
           </div>
         )}
 
-
-        {/* 
-        * STATUS OF THE USER
+        {/*
+         * STATUS OF THE USER
          */}
 
         {this.state.userData && (
-
           <div>
-
             <div className="container--flex comments__header-format">
-              <img className="form-comments__avatar" src={this.state.userData.avatar} alt="" />
+              <img
+                className="form-comments__avatar"
+                src={this.state.userData.avatar}
+                alt=""
+              />
 
-              <span className="comments__user" >{this.state.userData.name} </span>
+              <span className="comments__user">
+                {this.state.userData.name}{' '}
+              </span>
 
-              <span className="link" onClick={this.logUserOut} >LOGOUT</span>
+              <span className="link" onClick={this.logUserOut}>
+                LOGOUT
+              </span>
             </div>
-
           </div>
-
         )}
-
       </div>
     )
   }

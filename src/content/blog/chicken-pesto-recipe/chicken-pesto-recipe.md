@@ -2,6 +2,7 @@
 title: "Weekend Recap & Monday's Dinner: Baked Pesto Chicken & Veggies"
 date: "2019-01-18T18:03:01+00:00"
 slug: "weekend-recap-and-mondays-dinner-baked-pesto-chicken-and-veggies"
+language: "EN"
 category: "recipes"
 featuredImage: "./Recipe-Roasted_Chicken-With-Pesto.jpg"
 excerpt: "So, since it's now 2019, I’ve been thinking a lot about all my favorite recipes I tried in 2018.

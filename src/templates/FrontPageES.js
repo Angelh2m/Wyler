@@ -2,14 +2,14 @@ import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import FrontPageLayout from '../layouts/FrontPageLayout'
 
-export default function FrontPage() {
+export default function FrontPageES() {
   return (
     <div>
       <StaticQuery
         query={graphql`
-          query getAllposts {
+          query getAllpostsInSpanish {
             allMarkdownRemark(
-              filter: { frontmatter: { language: { eq: "EN" } } }
+              filter: { frontmatter: { language: { eq: "ES" } } }
               sort: { fields: [frontmatter___date], order: DESC }
             ) {
               edges {
@@ -19,6 +19,7 @@ export default function FrontPage() {
                     category
                     slug
                     date
+                    language
 
                     featuredImage {
                       childImageSharp {
@@ -39,7 +40,7 @@ export default function FrontPage() {
         `}
         render={data => (
           <>
-            <FrontPageLayout data={data} />
+            {data && <FrontPageLayout data={data} language="es" />}
           </>
         )}
       />

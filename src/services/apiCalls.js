@@ -84,13 +84,12 @@ const login = user => {
 }
 
 const registerUser = user => {
-
   return fetch(`${API_ENDPOINT}/api/register`, {
     method: 'post',
     body: JSON.stringify(user),
     headers: {
-      "Access-Control-Allow-Credentials": "true",
-      "Content-Type": "application/json"
+      'Access-Control-Allow-Credentials': 'true',
+      'Content-Type': 'application/json',
     },
   })
     .then(response => response.json())
@@ -103,8 +102,8 @@ const makeComment = commentPayload => {
     method: 'POST',
     body: JSON.stringify(commentPayload),
     headers: {
-      "Access-Control-Allow-Credentials": "true",
-      "Content-Type": "application/json"
+      'Access-Control-Allow-Credentials': 'true',
+      'Content-Type': 'application/json',
     },
   })
     .then(response => response.json())

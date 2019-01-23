@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import Layout from '../layouts/layout'
 import SEO from '../components/seo'
-import BlogPostLayout from '../layouts/BlogPostLayout'
+import BlogPost from '../layouts/BlogPostLayout'
 
-export default class BlogPost extends Component {
+export default class BlogPost_EN extends Component {
   componentDidMount() {
     try {
       window.scrollTo(0, 0)
-    } catch (error) {}
+    } catch (error) { }
   }
 
   render() {
@@ -25,7 +25,7 @@ export default class BlogPost extends Component {
           recipe={post.frontmatter.recipe}
           type={post.frontmatter.category}
         />
-        <BlogPostLayout post={post} />
+        <BlogPost post={post} language={post.frontmatter.language} />
       </Layout>
     )
   }
@@ -33,7 +33,9 @@ export default class BlogPost extends Component {
 
 export const articleQuery = graphql`
   query($id: String!) {
-    allMarkdownRemark(filter: { frontmatter: { slug: { eq: $id } } }) {
+    allMarkdownRemark(
+      filter: { frontmatter: { slug: { eq: $id } } }
+    ) {
       edges {
         node {
           frontmatter {
@@ -41,6 +43,7 @@ export const articleQuery = graphql`
             category
             date
             slug
+            language
 
             featuredImage {
               childImageSharp {
